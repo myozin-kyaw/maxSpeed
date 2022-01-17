@@ -51,8 +51,27 @@
                                 <a class="nav-link" href="#" id="check_member">Member</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="my_interested" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><span><i class="fas fa-star"></i></span></a>
+                                <a class="nav-link" id="my_interested" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><span><i class="fas fa-cart-arrow-down"></i></span></a>
                             </li>
+                            @if (Auth::check())
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{{ url('/vehicle') }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{auth()->user()->name}}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li class="dropdown-item">
+                                        <form action="logout" method="post">
+                                            @csrf
+                                            <button class="btn btn-default" style="border:none;color:#000;background-color:none;" type="submit"><span><i class="fas fa-tags"></i></span> Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                            @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('login')}}">Login</a>
+                            </li>
+                            @endif
                         </ul>
                         <form class="d-flex">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -61,22 +80,11 @@
                     </div>
                 </div>
             </nav>
-            <!-- @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/vehicle') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">{{auth()->user()->name}}</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif -->
+            
             <!-- Interested Item -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header">
-                  <h3 id="offcanvasRightLabel"><i class="fas fa-star"></i> Interested Item</h3>
+                  <h3 id="offcanvasRightLabel"><i class="fas fa-cart-arrow-down"></i> Interested Item</h3>
                   <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">

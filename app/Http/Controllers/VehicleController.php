@@ -23,7 +23,7 @@ class VehicleController extends Controller
 
     public function index()
     {
-        $vehicles = PopularVehicle::orderBy('created_at', 'ASC')->get();
+        $vehicles = PopularVehicle::orderBy('id', 'desc')->get();
         return view('admin.vehicle', compact('vehicles'));
     }
 

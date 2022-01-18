@@ -11,9 +11,10 @@ class HomeController extends Controller
     public function index()
     {
         $vehicles = PopularVehicle::orderBy('created_at', 'desc')->limit(3)->get();
-        $features = PopularVehicle::orderBy('created_at', 'desc')->get();
+        $features_one = PopularVehicle::orderBy('created_at', 'desc')->get();
+        $features_two = PopularVehicle::orderBy('created_at', 'asc')->get();
         $reviews = CustomerReview::orderBy('created_at', 'desc')->get();
-        return view('welcome', compact('vehicles','features','reviews'));
+        return view('welcome', compact('vehicles','features_one','features_two','reviews'));
     }
 
     public function show($id)

@@ -22,7 +22,7 @@ class CustomerReviewsController extends Controller
 
     public function index()
     {
-        $reviews = CustomerReview::all();
+        $reviews = CustomerReview::orderBy('id','desc')->get();
         return view('admin.review', compact('reviews'));
     }
 

@@ -58,6 +58,17 @@
                                 <a class="nav-link dropdown-toggle" href="{{ url('/vehicle') }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{auth()->user()->name}}
                                 </a>
+                                @if (Auth::user()->is_admin === 1) 
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{route('vehicle.index')}}"><span><i class="fas fa-user"></i></span> Admin Panel </a></li>
+                                    <li class="dropdown-item">
+                                        <form action="{{route('logout')}}" method="post">
+                                            @csrf
+                                            <button class="btn btn-default" style="border:none;color:#000;background-color:none;" type="submit"><span><i class="fas fa-tags"></i></span> Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                                @else
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li class="dropdown-item">
                                         <form action="{{route('logout')}}" method="post">
@@ -66,6 +77,7 @@
                                         </form>
                                     </li>
                                 </ul>
+                                @endif
                             </li>
                             @else
                             <li class="nav-item">
@@ -121,7 +133,7 @@
                     <div class="content">
                         <h3>{{$vehicle->brand}} - {{$vehicle->model}}</h3>
                         <div class="price"> <span>Speed : </span>  {{$vehicle->speed}}</div>
-                        <a href="/vehicle_show/{{$vehicle->id}}" class="btn">Check out</a>
+                        <a href="{{url('vehicle_show', $vehicle->id)}}" class="btn">Check out</a>
                     </div>
                 </div>
                 @endforeach
@@ -143,14 +155,14 @@
 
             <div class="swiper-wrapper mb-5">
 
-                @foreach($features as $feature)
+                @foreach($features_one as $feature)
                 <div class="swiper-slide box">
                     <div class="card" style="width: 24em;height: 26em;overflow: hidden;">
-                        <img src="{{url('/images/vehicles/' . $feature->image)}}" style="width:24em;height:auto;padding-top:1em" alt="">
+                        <img src="{{url('/images/vehicles/' . $feature->image)}}" style="width:auto;height:15em;padding-top:1em" alt="">
                         <div class="card-body" style="display:flex;justify-content:flex-end;flex-direction:column;">
                           <h5 class="card-title">{{$feature->brand}} - {{$feature->model}}</h5>
                           <p class="card-text">Speed - {{$feature->speed}}</p>
-                          <a href="/featured_view/{{$feature->id}}" class="btn">More</a>
+                          <a href="{{url('featured_view', $feature->id)}}" class="btn">More</a>
                         </div>
                     </div>
                 </div>
@@ -160,20 +172,20 @@
      
             <div class="swiper-pagination"></div>
      
-         </div>
+        </div>
 
          <div class="swiper featured-slider">
 
             <div class="swiper-wrapper mb-5">
 
-                @foreach($features as $feature)
+                @foreach($features_two as $feature)
                 <div class="swiper-slide box">
                     <div class="card" style="width: 24em;height: 26em;overflow: hidden;">
-                        <img src="{{url('/images/vehicles/' . $feature->image)}}" style="width:24em;height:auto;padding-top:1em" alt="">
+                        <img src="{{url('/images/vehicles/' . $feature->image)}}" style="width:auto;height:15em;padding-top:1em" alt="">
                         <div class="card-body" style="display:flex;justify-content:flex-end;flex-direction:column;">
                           <h5 class="card-title">{{$feature->brand}} - {{$feature->model}}</h5>
                           <p class="card-text">Speed - {{$feature->speed}}</p>
-                          <a href="/featured_view/{{$feature->id}}" class="btn">More</a>
+                          <a href="{{url('featured_view', $feature->id)}}" class="btn">More</a>
                         </div>
                     </div>
                 </div>
@@ -296,7 +308,7 @@
                     <div class="content">
                         <h3>{{$review->customer_name}}</h3>
                         <p>{{substr($review->customer_description,0, 70)}} ...</p>
-                        <a href="/review_show/{{$review->id}}" class="btn">Read more</a>
+                        <a href="{{url('review_show', $review->id)}}" class="btn">Read more</a>
                     </div>
                 </div>
                 @endforeach

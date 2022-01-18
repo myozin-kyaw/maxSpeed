@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\AdminRequest;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -25,7 +27,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        
+        return view('admin.admin_create');
     }
 
     /**
@@ -34,9 +36,17 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryCreateRequest $request)
+    public function store(AdminRequest $request)
     {
-        
+        $admin = new User();
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+
+        $password = Hash::make($request->password);
+        $admin->password = $password;
+        $admin->is_admin = $request->is_admin;
+        $admin->save();
+        return redirect('/admin')->with('uploaded', config('upload.admin.created'));
     }
 
     /**
@@ -56,9 +66,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(User $admin)
     {
-       
+       return view('admin.admin_edit', compact('admin'));
     }
 
     /**
@@ -68,9 +78,16 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryCreateRequest $request, Category $category)
+    public function update(AdminRequest $request, User $admin)
     {
-        
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+
+        $password = Hash::make($request->password);
+        $admin->password = $password;
+        $admin->is_admin = $request->is_admin;
+        $admin->save();
+        return redirect('/admin')->with('uploaded', config('upload.admin.updated'));
     }
 
     /**
@@ -79,8 +96,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(User $admin)
     {
-        
+        $admin->delete();
+        return redirect('/admin')->with('deleted', config('upload.admin.deleted'));
     }
 }

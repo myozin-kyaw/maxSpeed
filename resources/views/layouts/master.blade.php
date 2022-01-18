@@ -17,13 +17,18 @@
   <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <style>
+    h3 a.pj-logo {
+      color: #fff;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position:fixed;">
     <!-- Brand Logo -->
-    <h3 class="ml-5 mt-3" style="color:#fff;"><span style="color:rgb(252, 76, 76);">max</span>Speed</h3>
+    <h3 class="ml-5 mt-3" style="color:#fff;"><a href="{{route('index')}}" class="pj-logo"><span style="color:rgb(252, 76, 76);">max</span>Speed</a></h3>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -38,27 +43,27 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="/vehicle" class="nav-link {{ (request()->segment(1) == 'vehicle') ? 'active' : '' }}">
+                    <a href="{{route('vehicle.index')}}" class="nav-link {{ (request()->segment(1) == 'vehicle') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Vehicles</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/category" class="nav-link {{ (request()->segment(1) == 'category') ? 'active' : '' }}">
+                    <a href="{{route('category.index')}}" class="nav-link {{ (request()->segment(1) == 'category') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Category</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/review" class="nav-link {{ (request()->segment(1) == 'review') ? 'active' : '' }}">
+                    <a href="{{route('review.index')}}" class="nav-link {{ (request()->segment(1) == 'review') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Customer Reviews</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/" class="nav-link {{ (request()->segment(1) == '/') ? 'active' : '' }}">
+                    <a href="{{route('admin.index')}}" class="nav-link {{ (request()->segment(1) == 'admin') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>maxSpeed</p>
+                    <p>Create Admin</p>
                     </a>
                 </li>
             </ul>
@@ -73,7 +78,7 @@
     <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <form action="logout" method="post">
+      <form action="{{route('logout')}}" method="post">
         @csrf
         <button class="btn btn-secondary" type="submit">Logout</button>
       </form>

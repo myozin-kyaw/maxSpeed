@@ -14,12 +14,12 @@
                   <h2 class="card-title"><b>Category Create Panel</b></h2>
                 </div>
                 <div class="ms-auto p-2 bd-highlight">
-                   <a href="/category" style="float:right;" class="btn btn-secondary">Back</a>
+                   <a href="{{route('category.index')}}" style="float:right;" class="btn btn-secondary">Back</a>
                 </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form action="/category" method="post" enctype="multipart/form-data">
+                <form action="{{route('category.store')}}" method="post" enctype="multipart/form-data">
                   @csrf
                   <div class="form-group">
                     <label for="transmission_name">Transmission name</label>

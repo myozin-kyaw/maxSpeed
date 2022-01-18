@@ -14,12 +14,12 @@
                   <h2 class="card-title"><b>Vehicle Edit Panel</b></h2>
                 </div>
                 <div class="ms-auto p-2 bd-highlight">
-                   <a href="/vehicle" style="float:right;" class="btn btn-secondary">Back</a>
+                   <a href="{{route('vehicle.index')}}" style="float:right;" class="btn btn-secondary">Back</a>
                 </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form action="/vehicle/{{$vehicle->id}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('vehicle.update',[$vehicle->id])}}" method="post" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
                   <div class="form-group">

@@ -14,12 +14,12 @@
                   <h2 class="card-title"><b>Review Create Panel</b></h2>
                 </div>
                 <div class="ms-auto p-2 bd-highlight">
-                   <a href="/review" style="float:right;" class="btn btn-secondary">Back</a>
+                   <a href="{{route('review.index')}}" style="float:right;" class="btn btn-secondary">Back</a>
                 </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form action="/review/{{$review->id}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('review.update', [$review->id])}}" method="post" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
                   <div class="form-group">

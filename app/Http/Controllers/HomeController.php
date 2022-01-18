@@ -18,19 +18,19 @@ class HomeController extends Controller
 
     public function show($id)
     {
-        $vehicle = PopularVehicle::find($id);
+        $vehicle = PopularVehicle::findOrFail($id);
         return view('vehicle_show', compact('vehicle'));
     }
 
     public function view($id)
     {
-        $featured = PopularVehicle::find($id);
+        $featured = PopularVehicle::findOrFail($id);
         return view('featured_view', compact('featured'));
     }
 
     public function review_show($id)
     {
-        $review = CustomerReview::find($id);
+        $review = CustomerReview::findOrFail($id);
         return view('review_show', compact('review'));
     }
 

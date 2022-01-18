@@ -23,7 +23,7 @@
         <div class="overlay">
             <nav class="navbar navbar-expand-lg px-5 py-3 navbar-dark bg-dark fixed-top navigation">
                 <div class="container-fluid">
-                    <a class="logo me-2" href="/"><span>max</span>Speed</a>
+                    <a class="logo me-2" href="{{route('index')}}"><span>max</span>Speed</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -60,7 +60,7 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li class="dropdown-item">
-                                        <form action="logout" method="post">
+                                        <form action="{{route('logout')}}" method="post">
                                             @csrf
                                             <button class="btn btn-default" style="border:none;color:#000;background-color:none;" type="submit"><span><i class="fas fa-tags"></i></span> Logout</button>
                                         </form>
@@ -69,7 +69,7 @@
                             </li>
                             @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{url('login')}}">Login</a>
+                                <a class="nav-link" href="{{route('login')}}">Login</a>
                             </li>
                             @endif
                         </ul>
@@ -119,7 +119,7 @@
                 <div class="swiper-slide box">
                     <img src="{{url('/images/vehicles/' . $vehicle->image)}}" alt="">
                     <div class="content">
-                        <h3>{{$vehicle->brand}} - {{$vehicle->model}} <a href="#" class="interest-item"><i class="fas fa-star"></i></a></h3>
+                        <h3>{{$vehicle->brand}} - {{$vehicle->model}}</h3>
                         <div class="price"> <span>Speed : </span>  {{$vehicle->speed}}</div>
                         <a href="/vehicle_show/{{$vehicle->id}}" class="btn">Check out</a>
                     </div>
@@ -148,7 +148,7 @@
                     <div class="card" style="width: 24em;height: 26em;overflow: hidden;">
                         <img src="{{url('/images/vehicles/' . $feature->image)}}" style="width:24em;height:auto;padding-top:1em" alt="">
                         <div class="card-body" style="display:flex;justify-content:flex-end;flex-direction:column;">
-                          <h5 class="card-title">{{$feature->brand}} - {{$feature->model}} <a href="#" class="interest-item"><i class="fas fa-star"></i></a></h5>
+                          <h5 class="card-title">{{$feature->brand}} - {{$feature->model}}</h5>
                           <p class="card-text">Speed - {{$feature->speed}}</p>
                           <a href="/featured_view/{{$feature->id}}" class="btn">More</a>
                         </div>
@@ -171,7 +171,7 @@
                     <div class="card" style="width: 24em;height: 26em;overflow: hidden;">
                         <img src="{{url('/images/vehicles/' . $feature->image)}}" style="width:24em;height:auto;padding-top:1em" alt="">
                         <div class="card-body" style="display:flex;justify-content:flex-end;flex-direction:column;">
-                          <h5 class="card-title">{{$feature->brand}} - {{$feature->model}} <a href="#" class="interest-item"><i class="fas fa-star"></i></a></h5>
+                          <h5 class="card-title">{{$feature->brand}} - {{$feature->model}}</h5>
                           <p class="card-text">Speed - {{$feature->speed}}</p>
                           <a href="/featured_view/{{$feature->id}}" class="btn">More</a>
                         </div>

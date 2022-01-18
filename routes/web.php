@@ -21,24 +21,23 @@ use App\Http\Controllers\CustomerReviewsController;
 //     return view('welcome');
 // }); 
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('vehicle_show/{id}', [HomeController::class, 'show']);
-Route::get('featured_view/{id}', [HomeController::class, 'view']);
-Route::get('review_show/{id}', [HomeController::class, 'review_show']);
 
+/* User Route */
+Route::get('/', ['middleware' => 'isadmin', HomeController::class, 'index']);
+Route::get('vehicle_show/{id}', ['middleware' => 'isadmin', HomeController::class, 'show']);
+Route::get('featured_view/{id}', ['middleware' => 'isadmin', HomeController::class, 'view']);
+Route::get('review_show/{id}', ['middleware' => 'isadmin', HomeController::class, 'review_show']);
+
+/* Admin routes */
+Route::resource('vehicle', VehicleController::class)->middleware('isadmin');
+Route::resource('category', CategoryController::class)->middleware('isadmin');
+Route::resource('review', CustomerReviewsController::class)->middleware('isadmin');
 
 // Route::get('/', [App\Http\Controllers\OrderController::class, 'index'])->name('order.form');
 // Route::post('order_submit', [App\Http\Controllers\OrderController::class, 'submit'])->name('order.submit');
 
-
-/* Admin routes */
-Route::resource('vehicle', VehicleController::class);
-Route::resource('category', CategoryController::class);
-Route::resource('review', CustomerReviewsController::class);
-
 /* Close some routes */
 Auth::routes([
-    'register' => false, // Registration Routes...
     'reset' => false,  // Password Reset Routes...
     'verify' => false, // Email Verification Routes...
 ]); 

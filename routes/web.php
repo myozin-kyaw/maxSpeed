@@ -21,7 +21,6 @@ use App\Http\Controllers\CustomerReviewsController;
 /* User Route */
 Route::get('/', ['middleware' => 'isadmin', HomeController::class, 'index'])->name('index');
 Route::get('vehicle_show/{id}', ['middleware' => 'isadmin', HomeController::class, 'show'])->name('vehicle_show');
-Route::get('featured_view/{id}', ['middleware' => 'isadmin', HomeController::class, 'view'])->name('featured_view');
 Route::get('review_show/{id}', ['middleware' => 'isadmin', HomeController::class, 'review_show'])->name('review_show');
 Route::get('search',[HomeController::class, 'search'])->name('search');
 

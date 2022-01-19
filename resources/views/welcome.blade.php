@@ -172,7 +172,7 @@
                         <div class="card-body" style="display:flex;justify-content:flex-end;flex-direction:column;">
                           <h5 class="card-title">{{$feature->brand}} - {{$feature->model}}</h5>
                           <p class="card-text">Speed - {{$feature->speed}}</p>
-                          <a href="{{url('featured_view', $feature->id)}}" class="btn">More</a>
+                          <a href="{{url('vehicle_show', $feature->id)}}" class="btn">More</a>
                         </div>
                     </div>
                 </div>
@@ -195,7 +195,7 @@
                         <div class="card-body" style="display:flex;justify-content:flex-end;flex-direction:column;">
                           <h5 class="card-title">{{$feature->brand}} - {{$feature->model}}</h5>
                           <p class="card-text">Speed - {{$feature->speed}}</p>
-                          <a href="{{url('featured_view', $feature->id)}}" class="btn">More</a>
+                          <a href="{{url('vehicle_show', $feature->id)}}" class="btn">More</a>
                         </div>
                     </div>
                 </div>

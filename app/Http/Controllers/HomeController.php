@@ -23,12 +23,6 @@ class HomeController extends Controller
         return view('vehicle_show', compact('vehicle'));
     }
 
-    public function view($id)
-    {
-        $featured = PopularVehicle::findOrFail($id);
-        return view('featured_view', compact('featured'));
-    }
-
     public function review_show($id)
     {
         $review = CustomerReview::findOrFail($id);
@@ -45,11 +39,5 @@ class HomeController extends Controller
             return view('search',compact('items'));
         }
     }
-
-    // public function searchItem($id)
-    // {
-    //     $vehicle = PopularVehicle::findOrFail($id);
-    //     return view('vehicle_show', compact('vehicle'));
-    // }
 
 }

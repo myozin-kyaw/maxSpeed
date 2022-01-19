@@ -35,4 +35,15 @@ class HomeController extends Controller
         return view('review_show', compact('review'));
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        if ($search === null) {
+            return redirect('/');
+        } else {
+            $items = PopularVehicle::where('brand','like','%'.$search.'%')->get();
+            return view('search',compact('items'));
+        }
+    }
+
 }

@@ -1,0 +1,6 @@
+
+When I was away from school due to the unrest in Myanmar, I did my best to study web development on the W3 website, Youtube Channels, AP Laravel, and Laravel Documentation.
+
+$search_val = $request->search;
+        $books = Book::where('name','like','%'.$search_val.'%')->get();
+        return view('search',compact('books'));

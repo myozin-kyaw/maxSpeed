@@ -23,6 +23,7 @@ Route::get('/', ['middleware' => 'isadmin', HomeController::class, 'index'])->na
 Route::get('vehicle_show/{id}', ['middleware' => 'isadmin', HomeController::class, 'show'])->name('vehicle_show');
 Route::get('featured_view/{id}', ['middleware' => 'isadmin', HomeController::class, 'view'])->name('featured_view');
 Route::get('review_show/{id}', ['middleware' => 'isadmin', HomeController::class, 'review_show'])->name('review_show');
+Route::get('search',[HomeController::class, 'search'])->name('search');
 
 /* Admin routes */
 Route::resource('vehicle', VehicleController::class, ['names' => 'vehicle'])->middleware('isadmin');

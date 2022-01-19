@@ -46,4 +46,10 @@ class HomeController extends Controller
         }
     }
 
+    // public function searchItem($id)
+    // {
+    //     $vehicle = PopularVehicle::findOrFail($id);
+    //     return view('vehicle_show', compact('vehicle'));
+    // }
+
 }

@@ -13,6 +13,17 @@
     <script src="https://kit.fontawesome.com/3cf76f0fbf.js" crossorigin="anonymous"></script>
     <!-- index.css -->
     <link rel="stylesheet" href="{{url('css/project.css')}}">
+    <style type="text/css">
+        header li form button.logout {
+            border: none;
+            color: #000;
+            background-color: #fff;
+        }
+        header li form button.logout:hover {
+            background-color: #eee;
+            border: none;
+        }
+    </style>
 </head>
 <body onload="slider()">
     <!-- header -->
@@ -64,7 +75,7 @@
                                     <li class="dropdown-item">
                                         <form action="{{route('logout')}}" method="post">
                                             @csrf
-                                            <button class="btn btn-default" style="border:none;color:#000;background-color:none;" type="submit"><span><i class="fas fa-tags"></i></span> Logout</button>
+                                            <button class="logout" type="submit"><span><i class="fas fa-tags"></i></span> Logout</button>
                                         </form>
                                     </li>
                                 </ul>
@@ -73,7 +84,7 @@
                                     <li class="dropdown-item">
                                         <form action="{{route('logout')}}" method="post">
                                             @csrf
-                                            <button class="btn btn-default" style="border:none;color:#000;background-color:none;" type="submit"><span><i class="fas fa-tags"></i></span> Logout</button>
+                                            <button class="logout" type="submit"><span><i class="fas fa-tags"></i></span> Logout</button>
                                         </form>
                                     </li>
                                 </ul>

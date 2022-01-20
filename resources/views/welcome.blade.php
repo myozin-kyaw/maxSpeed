@@ -29,7 +29,7 @@
     <!-- header -->
     <header class="header" id="header">
         <div class="slider">
-            <img src="{{url('projectImage/cp00.jpg')}}" id="slider_img" alt="header_img">
+            <img src="{{url('projectImage/mainImg1.jpg')}}" id="slider_img" alt="header_img">
         </div>
         <div class="overlay">
             <nav class="navbar navbar-expand-lg px-5 py-3 navbar-dark bg-dark fixed-top navigation">
@@ -59,10 +59,7 @@
                                 <a class="nav-link scroll-Contact" href="#">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" id="check_member">Member</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="my_interested" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><span><i class="fas fa-cart-arrow-down"></i></span></a>
+                                <a class="nav-link" id="my_interested" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><span><i class="fas fa-cart-arrow-down"></i></span><span>0</span></a>
                             </li>
                             @if (Auth::check())
                             <li class="nav-item dropdown">
@@ -106,11 +103,27 @@
             <!-- Interested Item -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header">
-                  <h3 id="offcanvasRightLabel"><i class="fas fa-cart-arrow-down"></i> Interested Item</h3>
-                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <h3 id="offcanvasRightLabel"><i class="fas fa-cart-arrow-down"></i> Cart Item</h3>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-                <div class="offcanvas-body">
-                  ...
+                <div class="offcanvas-body" id="cartItemGroup">
+
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{url('projectImage/volvo.png')}}" class="img-fluid rounded-start my-5" alt="...">
+                            </div>
+                            <div class="col-md-8 my-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Brand | Model</h5>
+                                    <p class="card-text">Price</p>
+                                    <button class="btn">More</button>
+                                    <button class="btn">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <!-- Header Title -->
@@ -141,9 +154,13 @@
                 <div class="swiper-slide box">
                     <img src="{{url('/images/vehicles/' . $vehicle->image)}}" alt="">
                     <div class="content">
-                        <h3>{{$vehicle->brand}} - {{$vehicle->model}}</h3>
-                        <div class="price"> <span>Speed : </span>  {{$vehicle->speed}}</div>
-                        <a href="{{url('vehicle_show', $vehicle->id)}}" class="btn">Check out</a>
+                        <h3 id="">{{$vehicle->brand}} - {{$vehicle->model}}</h3>
+                        <div class="price"> <span>Price : </span>  {{$vehicle->price}}</div>
+                        <div style="display:flex;justify-content:center;">
+                            <a href="{{url('vehicle_show', $vehicle->id)}}" class="btn">Check out</a>
+                            <div class="mx-2"></div>
+                            <button id="cart-btn" class="btn">Add to cart</button>
+                        </div>
                     </div>
                 </div>
                 @endforeach
@@ -171,8 +188,11 @@
                         <img src="{{url('/images/vehicles/' . $feature->image)}}" style="width:auto;height:15em;padding-top:1em" alt="">
                         <div class="card-body" style="display:flex;justify-content:flex-end;flex-direction:column;">
                           <h5 class="card-title">{{$feature->brand}} - {{$feature->model}}</h5>
-                          <p class="card-text">Speed - {{$feature->speed}}</p>
-                          <a href="{{url('vehicle_show', $feature->id)}}" class="btn">More</a>
+                          <p class="card-text">Price - {{$feature->price}}</p>
+                          <div>
+                            <a href="{{url('vehicle_show', $feature->id)}}" class="btn" style="">More</a>
+                            <button id="cart-btn" class="btn">Add to cart</button>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -194,8 +214,11 @@
                         <img src="{{url('/images/vehicles/' . $feature->image)}}" style="width:auto;height:15em;padding-top:1em" alt="">
                         <div class="card-body" style="display:flex;justify-content:flex-end;flex-direction:column;">
                           <h5 class="card-title">{{$feature->brand}} - {{$feature->model}}</h5>
-                          <p class="card-text">Speed - {{$feature->speed}}</p>
-                          <a href="{{url('vehicle_show', $feature->id)}}" class="btn">More</a>
+                          <p class="card-text">Price - {{$feature->price}}</p>
+                          <div>
+                            <a href="{{url('vehicle_show', $feature->id)}}" class="btn" style="">More</a>
+                            <button id="cart-btn" class="btn">Add to cart</button>
+                          </div>
                         </div>
                     </div>
                 </div>

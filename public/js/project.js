@@ -1,49 +1,20 @@
 /* Header Image Slider */
-// const slider_img = document.getElementById('slider_img');
-// let header_images = new Array(
-//     "{{url('/projectImage/car-poster/cp00.jpg')}}",
-//     "{{url('/projectImage/car-poster/cp01.jpg')}}",
-//     "{{url('/projectImage/car-poster/cp02.jpg')}}",
-//     "/projectImage/img/car-poster/cp03.jpg",
-//     "/projectImage/img/car-poster/cp04.jpg",
-//     "/projectImage/img/car-poster/cp05.jpg",
-//     "/projectImage/img/car-poster/cp06.jpg",
-//     "/projectImage/img/car-poster/cp07.jfif",
-//     "/projectImage/img/car-poster/cp08.jpg"
-// );
-// var header_img_len = header_images.length;
-// let i = 0;
-// function slider() {
-//     if (i > header_img_len - 1) {
-//         i = 0;
-//     }
-//     slider_img.src = header_images[i];
-//     i++;
-//     setTimeout('slider()', 5000);
-// }
-
-/* Delete Search Item */
-// const search_box = document.getElementById('search_box');
-// const delete_search_item = document.getElementById('delete_search_item');
-// $(document).ready(function() {
-//     $(search_box).click(function() {
-//         $(delete_search_item).show();
-//     });
-//     $(delete_search_item).click(function() {
-//         $(delete_search_item).hide();
-//     })
-// })
-
-// member
-const check_member = document.getElementById('check_member');
-check_member.addEventListener('click', function() {
-    Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'You need to be our member first!',
-        footer: '<a href="#" class="check_member">Here is how to be our member?</a>'
-      })
-})
+const slider_img = document.getElementById('slider_img');
+let header_images = new Array(
+  "../projectImage/mainImg1.jpg",
+  "../projectImage/mainImg2.jpg",
+  "../projectImage/mainImg3.jpg",
+);
+var header_img_len = header_images.length;
+let i = 0;
+function slider() {
+    if (i > header_img_len - 1) {
+        i = 0;
+    }
+    slider_img.src = header_images[i];
+    i++;
+    setTimeout('slider()', 5000);
+}
 
 /* Section Scroll to */
 
@@ -244,3 +215,14 @@ var swiper = new Swiper(".review-slider", {
     },
   },
 });
+
+/* Add to cart */
+const cart_btn = document.getElementById('cart-btn');
+
+cart_btn.addEventListener('click', function() {
+
+})
+
+// console.log(brand.textContent);
+// console.log(model.textContent);
+// console.log(price.textContent);

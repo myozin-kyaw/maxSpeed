@@ -228,10 +228,6 @@ header .overlay .main-title .view-btn a span:nth-child(4) {
 /* Navigation */
 /* ----------------------------- */
 
-nav a.logo:hover {
-    color: var(--white);
-}
-
 nav.navigation .nav-item .nav-link {
     padding-left: .7em;
     padding-right: .7em;
@@ -256,6 +252,10 @@ nav.navigation .nav-item .nav-link {
 
 .navigation .logo span {
     color: var(--main-color);
+}
+
+nav a.logo:hover {
+    color: var(--white);
 }
 
 nav.navigation form input[type=search]:focus,

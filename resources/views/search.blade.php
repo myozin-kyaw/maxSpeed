@@ -31,8 +31,8 @@
             @forelse($items as $item)
 
                 <div class="col">
-                    <div class="card" style="height: 30em;width: auto;">
-                        <img style="height:18em;width: auto" src="{{url('/images/vehicles/' . $item->image)}}" class="card-img-top m-3" alt="{{$item->brand | $item->model}}">
+                    <div class="card" style="height: 28em;width: auto;">
+                        <img style="height:18em;width: auto" src="{{url('/images/vehicles/' . $item->image)}}" class="card-img-top" alt="{{$item->brand | $item->model}}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $item->brand }} | {{ $item->model }}</h5>
                             <p class="card-text">{{$item->speed}}</p>

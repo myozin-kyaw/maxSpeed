@@ -23,6 +23,10 @@
             background-color: #eee;
             border: none;
         }
+        .dFlexLR {
+            display: flex;
+            gap: 10em;
+        }
     </style>
 </head>
 <body onload="slider()">
@@ -45,8 +49,8 @@
                                 Vehicles
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item scroll-popular-vehicle" href="#"><span><i class="fas fa-tags"></i></span> Popular Vehicles </a></li>
-                                    <li><a class="dropdown-item scroll-feature" href="#"><span><i class="fas fa-user"></i></span> Featured </a></li>
+                                    <li><a class="dropdown-item scroll-popular-vehicle" href="#"><span><i class="fab fa-product-hunt"></i></span> Popular Vehicles </a></li>
+                                    <li><a class="dropdown-item scroll-feature" href="#"><span><i class="fas fa-car"></i></span> Featured </a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -60,7 +64,7 @@
                             </li>
                             @if (Auth::check())
                             <li class="nav-item">
-                                <a class="nav-link" id="my_interested" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><span><i class="fas fa-cart-arrow-down"></i></span><span>0</span></a>
+                                <a class="nav-link" id="my_interested" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><span><i class="fas fa-cart-arrow-down"></i></span><span>{{ count($carts) }}</span></a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="{{ url('/vehicle') }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -72,7 +76,7 @@
                                     <li class="dropdown-item">
                                         <form action="{{route('logout')}}" method="post">
                                             @csrf
-                                            <button class="logout" type="submit"><span><i class="fas fa-tags"></i></span> Logout</button>
+                                            <button class="logout" type="submit"><span><i class="fas fa-sign-out-alt"></i></span> Logout</button>
                                         </form>
                                     </li>
                                 </ul>
@@ -81,7 +85,7 @@
                                     <li class="dropdown-item">
                                         <form action="{{route('logout')}}" method="post">
                                             @csrf
-                                            <button class="logout" type="submit"><span><i class="fas fa-tags"></i></span> Logout</button>
+                                            <button class="logout" type="submit"><span><i class="fas fa-sign-out-alt"></i></span> Logout</button>
                                         </form>
                                     </li>
                                 </ul>
@@ -103,24 +107,28 @@
             <!-- Interested Item -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header">
-                    <h3 id="offcanvasRightLabel"><i class="fas fa-cart-arrow-down"></i> Cart Item</h3>
+                    <div class="dFlexLR">
+                        <h4 id="offcanvasRightLabel"><i class="fas fa-cart-arrow-down"></i> Cart Item</h4>
+                        <form action="">
+                            <button class="btn"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </div>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-                @if (session('message'))
-                <div class="alert alert-success alert-dismissible fade show mx-3" role="alert">
-                <strong>Success!</strong> {{ session('message') }}
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endif
                 <div class="offcanvas-body" id="cartItemGroup">
-
+                    @if (session('message'))
+                    <div class="alert alert-success alert-dismissible fade show mx-3" role="alert">
+                        <strong>Success!</strong> {{ session('message') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
                     <div class="offcanvas-body" id="cartContainer">
                         @if(!$carts->isEmpty())
                             @foreach($carts as $cart)
                             <div id="cartItemGroup" class="card mb-3">
                                 <div id="cartItem" class="row g-0">
                                     <div id="cartImg" class="col-md-4">
-                                        <img id="cartSrc" src="{{url('/images/vehicles/' . $cart->image)}}" class="img-fluid rounded-start my-5" alt="...">
+                                        <img id="cartSrc" src="{{url('/images/vehicles/' . $cart->image)}}" class="img-fluid rounded-start my-5" alt="{{ $cart->brand }} | {{ $cart->model }}">
                                     </div>
                                     <div id="cartTextGroup" class="col-md-8 my-3">
                                         <div id="cartText" class="card-body">

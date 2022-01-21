@@ -58,10 +58,10 @@
                             <li class="nav-item">
                                 <a class="nav-link scroll-Contact" href="#">Contact</a>
                             </li>
+                            @if (Auth::check())
                             <li class="nav-item">
                                 <a class="nav-link" id="my_interested" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><span><i class="fas fa-cart-arrow-down"></i></span><span>0</span></a>
                             </li>
-                            @if (Auth::check())
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="{{ url('/vehicle') }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{auth()->user()->name}}
@@ -106,25 +106,45 @@
                     <h3 id="offcanvasRightLabel"><i class="fas fa-cart-arrow-down"></i> Cart Item</h3>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
+                @if (session('message'))
+                <div class="alert alert-success alert-dismissible fade show mx-3" role="alert">
+                <strong>Success!</strong> {{ session('message') }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
                 <div class="offcanvas-body" id="cartItemGroup">
 
-                    <div class="card mb-3" style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{url('projectImage/volvo.png')}}" class="img-fluid rounded-start my-5" alt="...">
-                            </div>
-                            <div class="col-md-8 my-3">
-                                <div class="card-body">
-                                    <h5 class="card-title">Brand | Model</h5>
-                                    <p class="card-text">Price</p>
-                                    <button class="btn">More</button>
-                                    <button class="btn">Remove</button>
+                    <div class="offcanvas-body" id="cartContainer">
+                        @if(!$carts->isEmpty())
+                            @foreach($carts as $cart)
+                            <div id="cartItemGroup" class="card mb-3">
+                                <div id="cartItem" class="row g-0">
+                                    <div id="cartImg" class="col-md-4">
+                                        <img id="cartSrc" src="{{url('/images/vehicles/' . $cart->image)}}" class="img-fluid rounded-start my-5" alt="...">
+                                    </div>
+                                    <div id="cartTextGroup" class="col-md-8 my-3">
+                                        <div id="cartText" class="card-body">
+                                            <h5 class="card-title">{{$cart->brand}} | {{$cart->model}}</h5>
+                                            <p class="card-text">{{$cart->price}}</p>
+                                            <div style="display:flex;gap:10px;">
+                                                <a href="{{url('vehicle_show', $cart->vehicle_id)}}" class="btn">More</a>
+                                                <form action="{{route('cart.destroy', [$cart->id])}}" method="GET">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn" type="submit">Remove</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            @endforeach
+                        @else
+                            <h5>No item yet !</h5>
+                        @endif
                     </div>
-
                 </div>
+
             </div>
             <!-- Header Title -->
             <div class="position-absolute top-50 start-50 translate-middle main-title">
@@ -159,7 +179,16 @@
                         <div style="display:flex;justify-content:center;">
                             <a href="{{url('vehicle_show', $vehicle->id)}}" class="btn">Check out</a>
                             <div class="mx-2"></div>
-                            <button id="cart-btn" class="btn">Add to cart</button>
+                            <form action="{{route('cart.store')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                                <input type="hidden" name="vehicle_id" value="{{$vehicle->id}}">
+                                <input type="hidden" name="vehicle_brand" value="{{$vehicle->brand}}">
+                                <input type="hidden" name="vehicle_model" value="{{$vehicle->model}}">
+                                <input type="hidden" name="vehicle_price" value="{{$vehicle->price}}">
+                                <input type="hidden" name="vehicle_image" value="{{$vehicle->image}}">
+                                <button class="btn" type="submit">Add to cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -187,11 +216,22 @@
                     <div class="card" style="width: 24em;height: 26em;overflow: hidden;">
                         <img src="{{url('/images/vehicles/' . $feature->image)}}" style="width:auto;height:15em;padding-top:1em" alt="">
                         <div class="card-body" style="display:flex;justify-content:flex-end;flex-direction:column;">
-                          <h5 class="card-title">{{$feature->brand}} - {{$feature->model}}</h5>
-                          <p class="card-text">Price - {{$feature->price}}</p>
-                          <div>
+                          <h5 class="card-title cartBM">{{$feature->brand}} - {{$feature->model}}</h5>
+                          <p class="card-text cart-price">Price - {{$feature->price}}</p>
+                          <div style="display:flex;gap:10px;">
                             <a href="{{url('vehicle_show', $feature->id)}}" class="btn" style="">More</a>
-                            <button id="cart-btn" class="btn">Add to cart</button>
+                            
+                            <form action="{{route('cart.store')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                                <input type="hidden" name="vehicle_id" value="{{$feature->id}}">
+                                <input type="hidden" name="vehicle_brand" value="{{$feature->brand}}">
+                                <input type="hidden" name="vehicle_model" value="{{$feature->model}}">
+                                <input type="hidden" name="vehicle_price" value="{{$feature->price}}">
+                                <input type="hidden" name="vehicle_image" value="{{$feature->image}}">
+                                <button class="btn" type="submit">Add to cart</button>
+                            </form>
+
                           </div>
                         </div>
                     </div>
@@ -210,14 +250,25 @@
 
                 @foreach($features_two as $feature)
                 <div class="swiper-slide box">
-                    <div class="card" style="width: 24em;height: 26em;overflow: hidden;">
+                <div class="card" style="width: 24em;height: 26em;overflow: hidden;">
                         <img src="{{url('/images/vehicles/' . $feature->image)}}" style="width:auto;height:15em;padding-top:1em" alt="">
                         <div class="card-body" style="display:flex;justify-content:flex-end;flex-direction:column;">
-                          <h5 class="card-title">{{$feature->brand}} - {{$feature->model}}</h5>
-                          <p class="card-text">Price - {{$feature->price}}</p>
-                          <div>
+                          <h5 class="card-title cartBM">{{$feature->brand}} - {{$feature->model}}</h5>
+                          <p class="card-text cart-price">Price - {{$feature->price}}</p>
+                          <div style="display:flex;gap:10px;">
                             <a href="{{url('vehicle_show', $feature->id)}}" class="btn" style="">More</a>
-                            <button id="cart-btn" class="btn">Add to cart</button>
+                            
+                            <form action="{{route('cart.store')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                                <input type="hidden" name="vehicle_id" value="{{$feature->id}}">
+                                <input type="hidden" name="vehicle_brand" value="{{$feature->brand}}">
+                                <input type="hidden" name="vehicle_model" value="{{$feature->model}}">
+                                <input type="hidden" name="vehicle_price" value="{{$feature->price}}">
+                                <input type="hidden" name="vehicle_image" value="{{$feature->image}}">
+                                <button class="btn" type="submit">Add to cart</button>
+                            </form>
+
                           </div>
                         </div>
                     </div>

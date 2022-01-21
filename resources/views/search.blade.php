@@ -36,7 +36,19 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $item->brand }} | {{ $item->model }}</h5>
                             <p class="card-text">{{$item->speed}}</p>
-                            <a href="{{url('vehicle_show', $item->id)}}" class="btn">More</a>
+                            <div style="display:flex;gap:10px;">
+                                <a href="{{url('vehicle_show', $item->id)}}" class="btn">More</a>
+                                <form action="{{route('cart.store')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                                    <input type="hidden" name="vehicle_id" value="{{$item->id}}">
+                                    <input type="hidden" name="vehicle_brand" value="{{$item->brand}}">
+                                    <input type="hidden" name="vehicle_model" value="{{$item->model}}">
+                                    <input type="hidden" name="vehicle_price" value="{{$item->price}}">
+                                    <input type="hidden" name="vehicle_image" value="{{$item->image}}">
+                                    <button class="btn" type="submit">Add to cart</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

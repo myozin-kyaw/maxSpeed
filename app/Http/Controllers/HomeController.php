@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Models\CustomerReview;
 use App\Models\PopularVehicle;
@@ -14,7 +15,8 @@ class HomeController extends Controller
         $features_one = PopularVehicle::orderBy('created_at', 'desc')->get();
         $features_two = PopularVehicle::orderBy('created_at', 'asc')->get();
         $reviews = CustomerReview::orderBy('created_at', 'desc')->get();
-        return view('welcome', compact('vehicles','features_one','features_two','reviews'));
+        $carts = Cart::where('user_id',auth()->id())->orderBy('id', 'desc')->get();
+        return view('welcome', compact('vehicles','features_one','features_two','reviews','carts'));
     }
 
     public function show($id)

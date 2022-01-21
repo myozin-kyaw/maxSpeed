@@ -222,7 +222,3 @@ const cart_btn = document.getElementById('cart-btn');
 cart_btn.addEventListener('click', function() {
 
 })
-
-// console.log(brand.textContent);
-// console.log(model.textContent);
-// console.log(price.textContent);

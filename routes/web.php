@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VehicleController;
@@ -30,12 +31,12 @@ Route::resource('category', CategoryController::class, ['names' => 'category'])-
 Route::resource('review', CustomerReviewsController::class, ['names' => 'review'])->middleware('isadmin');
 Route::resource('admin', AdminController::class, ['names' => 'admin'])->middleware('isadmin');
 
+/* Add to Cart */
+Route::post('/cart_store', [CartController::class, 'store'])->name('cart.store');
+Route::get('/cart_destroy/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+
 /* Close some routes */
 Auth::routes([
     'reset' => false,  // Password Reset Routes...
     'verify' => false, // Email Verification Routes...
 ]); 
-
-
-// Route::get('/', [App\Http\Controllers\OrderController::class, 'index'])->name('order.form');
-// Route::post('order_submit', [App\Http\Controllers\OrderController::class, 'submit'])->name('order.submit');

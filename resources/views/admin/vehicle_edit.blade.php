@@ -14,45 +14,45 @@
                   <h2 class="card-title"><b>Vehicle Edit Panel</b></h2>
                 </div>
                 <div class="ms-auto p-2 bd-highlight">
-                   <a href="{{route('vehicle.index')}}" style="float:right;" class="btn btn-secondary">Back</a>
+                   <a href="{{ route('vehicle.index') }}" style="float:right;" class="btn btn-secondary">Back</a>
                 </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form action="{{route('vehicle.update',[$vehicle->id])}}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('vehicle.update',[$vehicle->id]) }}" method="POST" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
                   <div class="form-group">
                       <label for="brand">Brand</label>
-                      <input type="text" class="form-control @error('brand') is-invalid @enderror" id="brand" name="brand" value="{{old('brand', $vehicle->brand)}}">
+                      <input type="text" class="form-control @error('brand') is-invalid @enderror" id="brand" name="brand" value="{{ old('brand', $vehicle->brand) }}">
                   </div>
                   @error('brand')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                   <div class="form-group">
                       <label for="model">Model</label>
-                      <input type="text" class="form-control @error('model') is-invalid @enderror" id="model" name="model" value="{{old('model', $vehicle->model)}}">
+                      <input type="text" class="form-control @error('model') is-invalid @enderror" id="model" name="model" value="{{ old('model', $vehicle->model) }}">
                   </div>
                   @error('model')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                   <div class="form-group">
                       <label for="price">Price</label>
-                      <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{old('price', $vehicle->price)}}">
+                      <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price', $vehicle->price) }}">
                   </div>
                   @error('price')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                   <div class="form-group">
                       <label for="year">Production Year</label>
-                      <input type="text" class="form-control @error('production_year') is-invalid @enderror" id="year" name="production_year" value="{{old('production_year', $vehicle->production_year)}}">
+                      <input type="text" class="form-control @error('production_year') is-invalid @enderror" id="year" name="production_year" value="{{ old('production_year', $vehicle->production_year) }}">
                   </div>
                   @error('production_year')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                   <div class="form-group">
                       <label for="speed">Speed</label>
-                      <input type="text" class="form-control @error('speed') is-invalid @enderror" id="speed" name="speed" value="{{old('speed', $vehicle->speed)}}">
+                      <input type="text" class="form-control @error('speed') is-invalid @enderror" id="speed" name="speed" value="{{ old('speed', $vehicle->speed) }}">
                   </div>
                   @error('speed')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -62,7 +62,7 @@
                       <select name="transmission_id" class="form-control @error('transmission_id') is-invalid @enderror">
                           <option value="">Select Transmission</option>
                           @foreach($categories as $category)
-                          <option value="{{$category->id}}" {{$category->id === $vehicle->transmission_id ? 'selected' : ''}}>{{$category->transmission_name}}</option>
+                          <option value="{{ $category->id }}" {{ $category->id === $vehicle->transmission_id ? 'selected' : ''}}>{{$category->transmission_name }}</option>
                           @endforeach
                       </select>
                   </div>
@@ -74,7 +74,7 @@
                       <select name="power_id" class="form-control @error('power_id') is-invalid @enderror">
                           <option value="">Select Power</option>
                           @foreach($categories as $category)
-                          <option value="{{$category->id}}" {{$category->id === $vehicle->power_id ? 'selected' : ''}}>{{$category->power_name}}</option>
+                          <option value="{{ $category->id }}" {{ $category->id === $vehicle->power_id ? 'selected' : ''}}>{{$category->power_name }}</option>
                           @endforeach
                       </select>
                   </div>
@@ -89,7 +89,7 @@
                           <input style="width:30em" class="form-control" type="file" id="formFile" name="image">
                         </div>
                         <div class="col-4 mt-2">
-                          <img style="width:10em; height:auto; float:right;" src="{{url('/images/vehicles/' . $vehicle->image)}}">
+                          <img style="width:10em; height:auto; float:right;" src="{{ url('/images/vehicles/' . $vehicle->image) }}">
                         </div>
                       </div>
                     </div>

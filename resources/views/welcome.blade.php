@@ -32,18 +32,27 @@
 <body onload="slider()">
     <!-- header -->
     <header class="header" id="header">
+
         <div class="slider">
-            <img src="{{url('projectImage/mainImg1.jpg')}}" id="slider_img" alt="header_img">
+            <img src="{{ url('projectImage/mainImg1.jpg') }}" id="slider_img" alt="header_img">
         </div>
+
         <div class="overlay">
+
             <nav class="navbar navbar-expand-lg px-5 py-3 navbar-dark bg-dark fixed-top navigation">
+
                 <div class="container-fluid">
-                    <a class="logo me-2" href="{{route('index')}}"><span>max</span>Speed</a>
+
+                    <a class="logo me-2" href="{{ route('index') }}"><span>max</span>Speed</a>
+
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Vehicles
@@ -53,28 +62,33 @@
                                     <li><a class="dropdown-item scroll-feature" href="#"><span><i class="fas fa-car"></i></span> Featured </a></li>
                                 </ul>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link scroll-Services" href="#">Services</a>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link scroll-reviews" href="#">Review</a>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link scroll-Contact" href="#">Contact</a>
                             </li>
+
                             @if (Auth::check())
                             <li class="nav-item">
                                 <a class="nav-link" id="my_interested" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><span><i class="fas fa-cart-arrow-down"></i></span><span>{{ count($carts) }}</span></a>
                             </li>
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="{{ url('/vehicle') }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{auth()->user()->name}}
+                                {{ auth()->user()->name }}
                                 </a>
                                 @if (Auth::user()->is_admin === 1) 
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="{{route('vehicle.index')}}"><span><i class="fas fa-user"></i></span> Admin Panel </a></li>
+                                    <li><a class="dropdown-item" href="{{ route('vehicle.index') }}"><span><i class="fas fa-user"></i></span> Admin Panel </a></li>
                                     <li class="dropdown-item">
-                                        <form action="{{route('logout')}}" method="post">
+                                        <form action="{{ route('logout') }}" method="POST">
                                             @csrf
                                             <button class="logout" type="submit"><span><i class="fas fa-sign-out-alt"></i></span> Logout</button>
                                         </form>
@@ -83,7 +97,7 @@
                                 @else
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li class="dropdown-item">
-                                        <form action="{{route('logout')}}" method="post">
+                                        <form action="{{ route('logout') }}" method="post">
                                             @csrf
                                             <button class="logout" type="submit"><span><i class="fas fa-sign-out-alt"></i></span> Logout</button>
                                         </form>
@@ -93,50 +107,61 @@
                             </li>
                             @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('login')}}">Login</a>
+                                <a class="nav-link" href="{{ route('login') }}">Login</a>
                             </li>
                             @endif
                         </ul>
-                        <form class="d-flex" action="{{url('search')}}" method="GET">
+
+                        <form class="d-flex" action="{{ url('search') }}" method="GET">
                             <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
+
                     </div>
+
                 </div>
+
             </nav>
             <!-- Interested Item -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+
                 <div class="offcanvas-header">
+
                     <div class="dFlexLR">
                         <h4 id="offcanvasRightLabel"><i class="fas fa-cart-arrow-down"></i> Cart Item</h4>
                         <form action="">
                             <button class="btn"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </div>
+
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
                 </div>
                 <div class="offcanvas-body" id="cartItemGroup">
+
                     @if (session('message'))
                     <div class="alert alert-success alert-dismissible fade show mx-3" role="alert">
                         <strong>Success!</strong> {{ session('message') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     @endif
+
                     <div class="offcanvas-body" id="cartContainer">
+
                         @if(!$carts->isEmpty())
                             @foreach($carts as $cart)
                             <div id="cartItemGroup" class="card mb-3">
                                 <div id="cartItem" class="row g-0">
                                     <div id="cartImg" class="col-md-4">
-                                        <img id="cartSrc" src="{{url('/images/vehicles/' . $cart->image)}}" class="img-fluid rounded-start my-5" alt="{{ $cart->brand }} | {{ $cart->model }}">
+                                        <img id="cartSrc" src="{{ url('/images/vehicles/' . $cart->image) }}" class="img-fluid rounded-start my-5" alt="{{ $cart->brand }} | {{ $cart->model }}">
                                     </div>
                                     <div id="cartTextGroup" class="col-md-8 my-3">
                                         <div id="cartText" class="card-body">
-                                            <h5 class="card-title">{{$cart->brand}} | {{$cart->model}}</h5>
-                                            <p class="card-text">{{$cart->price}}</p>
+                                            <h5 class="card-title">{{ $cart->brand }} | {{ $cart->model }}</h5>
+                                            <p class="card-text">{{ $cart->price }}</p>
                                             <div style="display:flex;gap:10px;">
-                                                <a href="{{url('vehicle_show', $cart->vehicle_id)}}" class="btn">More</a>
-                                                <form action="{{route('cart.destroy', [$cart->id])}}" method="GET">
+                                                <a href="{{ url('vehicle_show', $cart->vehicle_id) }}" class="btn">More</a>
+                                                <form action="{{ route('cart.destroy', [$cart->id]) }}" method="GET">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn" type="submit">Remove</button>
@@ -150,12 +175,15 @@
                         @else
                             <h5>No item yet !</h5>
                         @endif
+
                     </div>
+
                 </div>
 
             </div>
             <!-- Header Title -->
             <div class="position-absolute top-50 start-50 translate-middle main-title">
+
                 <h1 class="text-center">FIND YOUR CAR</h1>
                 <div class="text-center view-btn">
                     <a class="btn" id="view_more">
@@ -166,8 +194,11 @@
                         View more
                     </a>
                 </div>
+
             </div>
+
         </div>
+
     </header>
 
     <section class="vehicles px-5 mt-5" id="vehicles">
@@ -180,21 +211,21 @@
     
                 @foreach($vehicles as $vehicle)
                 <div class="swiper-slide box">
-                    <img src="{{url('/images/vehicles/' . $vehicle->image)}}" alt="">
+                    <img src="{{ url('/images/vehicles/' . $vehicle->image) }}" alt="{{ $vehicle->brand }} | {{ $vehicle->model }}">
                     <div class="content">
-                        <h3 id="">{{$vehicle->brand}} - {{$vehicle->model}}</h3>
-                        <div class="price"> <span>Price : </span>  {{$vehicle->price}}</div>
+                        <h3 id="">{{ $vehicle->brand }} - {{ $vehicle->model }}</h3>
+                        <div class="price"> <span>Price : </span>  {{ $vehicle->price }}</div>
                         <div style="display:flex;justify-content:center;">
-                            <a href="{{url('vehicle_show', $vehicle->id)}}" class="btn">Check out</a>
+                            <a href="{{ url('vehicle_show', $vehicle->id) }}" class="btn">Check out</a>
                             <div class="mx-2"></div>
-                            <form action="{{route('cart.store')}}" method="POST">
+                            <form action="{{ route('cart.store') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{ auth()->id() }}">
-                                <input type="hidden" name="vehicle_id" value="{{$vehicle->id}}">
-                                <input type="hidden" name="vehicle_brand" value="{{$vehicle->brand}}">
-                                <input type="hidden" name="vehicle_model" value="{{$vehicle->model}}">
-                                <input type="hidden" name="vehicle_price" value="{{$vehicle->price}}">
-                                <input type="hidden" name="vehicle_image" value="{{$vehicle->image}}">
+                                <input type="hidden" name="vehicle_id" value="{{ $vehicle->id }}">
+                                <input type="hidden" name="vehicle_brand" value="{{ $vehicle->brand }}">
+                                <input type="hidden" name="vehicle_model" value="{{ $vehicle->model }}">
+                                <input type="hidden" name="vehicle_price" value="{{ $vehicle->price }}">
+                                <input type="hidden" name="vehicle_image" value="{{ $vehicle->image }}">
                                 <button class="btn" type="submit">Add to cart</button>
                             </form>
                         </div>
@@ -222,21 +253,21 @@
                 @foreach($features_one as $feature)
                 <div class="swiper-slide box">
                     <div class="card" style="width: 24em;height: 26em;overflow: hidden;">
-                        <img src="{{url('/images/vehicles/' . $feature->image)}}" style="width:auto;height:15em;padding-top:1em" alt="">
+                        <img src="{{ url('/images/vehicles/' . $feature->image) }}" style="width:auto;height:15em;padding-top:1em" alt="{{ $feature->brand }} | {{ $feature->model }}">
                         <div class="card-body" style="display:flex;justify-content:flex-end;flex-direction:column;">
-                          <h5 class="card-title cartBM">{{$feature->brand}} - {{$feature->model}}</h5>
+                          <h5 class="card-title cartBM">{{ $feature->brand }} - {{ $feature->model }}</h5>
                           <p class="card-text cart-price">Price - {{$feature->price}}</p>
                           <div style="display:flex;gap:10px;">
-                            <a href="{{url('vehicle_show', $feature->id)}}" class="btn" style="">More</a>
+                            <a href="{{ url('vehicle_show', $feature->id) }}" class="btn">More</a>
                             
-                            <form action="{{route('cart.store')}}" method="POST">
+                            <form action="{{ route('cart.store') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{ auth()->id() }}">
-                                <input type="hidden" name="vehicle_id" value="{{$feature->id}}">
-                                <input type="hidden" name="vehicle_brand" value="{{$feature->brand}}">
-                                <input type="hidden" name="vehicle_model" value="{{$feature->model}}">
-                                <input type="hidden" name="vehicle_price" value="{{$feature->price}}">
-                                <input type="hidden" name="vehicle_image" value="{{$feature->image}}">
+                                <input type="hidden" name="vehicle_id" value="{{ $feature->id }}">
+                                <input type="hidden" name="vehicle_brand" value="{{ $feature->brand }}">
+                                <input type="hidden" name="vehicle_model" value="{{ $feature->model }}">
+                                <input type="hidden" name="vehicle_price" value="{{ $feature->price }}">
+                                <input type="hidden" name="vehicle_image" value="{{ $feature->image }}">
                                 <button class="btn" type="submit">Add to cart</button>
                             </form>
 
@@ -259,21 +290,21 @@
                 @foreach($features_two as $feature)
                 <div class="swiper-slide box">
                 <div class="card" style="width: 24em;height: 26em;overflow: hidden;">
-                        <img src="{{url('/images/vehicles/' . $feature->image)}}" style="width:auto;height:15em;padding-top:1em" alt="">
+                        <img src="{{ url('/images/vehicles/' . $feature->image) }}" style="width:auto;height:15em;padding-top:1em" alt="{{ $feature->brand }} | {{ $feature->model }}">
                         <div class="card-body" style="display:flex;justify-content:flex-end;flex-direction:column;">
-                          <h5 class="card-title cartBM">{{$feature->brand}} - {{$feature->model}}</h5>
-                          <p class="card-text cart-price">Price - {{$feature->price}}</p>
+                          <h5 class="card-title cartBM">{{ $feature->brand }} - {{ $feature->model }}</h5>
+                          <p class="card-text cart-price">Price - {{ $feature->price }}</p>
                           <div style="display:flex;gap:10px;">
-                            <a href="{{url('vehicle_show', $feature->id)}}" class="btn" style="">More</a>
+                            <a href="{{ url('vehicle_show', $feature->id) }}" class="btn" style="">More</a>
                             
-                            <form action="{{route('cart.store')}}" method="POST">
+                            <form action="{{ route('cart.store') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{ auth()->id() }}">
-                                <input type="hidden" name="vehicle_id" value="{{$feature->id}}">
-                                <input type="hidden" name="vehicle_brand" value="{{$feature->brand}}">
-                                <input type="hidden" name="vehicle_model" value="{{$feature->model}}">
-                                <input type="hidden" name="vehicle_price" value="{{$feature->price}}">
-                                <input type="hidden" name="vehicle_image" value="{{$feature->image}}">
+                                <input type="hidden" name="vehicle_id" value="{{ $feature->id }}">
+                                <input type="hidden" name="vehicle_brand" value="{{ $feature->brand }}">
+                                <input type="hidden" name="vehicle_model" value="{{ $feature->model }}">
+                                <input type="hidden" name="vehicle_price" value="{{ $feature->price }}">
+                                <input type="hidden" name="vehicle_image" value="{{ $feature->image }}">
                                 <button class="btn" type="submit">Add to cart</button>
                             </form>
 
@@ -396,11 +427,11 @@
     
                 @foreach($reviews as $review)
                 <div class="swiper-slide box">
-                    <img src="{{url('/images/customerImage/' . $review->customer_image)}}" alt="">
+                    <img src="{{url('/images/customerImage/' . $review->customer_image)}}" alt="{{ $review->customer_name }}">
                     <div class="content">
-                        <h3>{{$review->customer_name}}</h3>
-                        <p>{{substr($review->customer_description,0, 70)}} ...</p>
-                        <a href="{{url('review_show', $review->id)}}" class="btn">Read more</a>
+                        <h3>{{ $review->customer_name }}</h3>
+                        <p>{{ substr($review->customer_description,0, 70) }} ...</p>
+                        <a href="{{ url('review_show', $review->id) }}" class="btn">Read more</a>
                     </div>
                 </div>
                 @endforeach
@@ -427,35 +458,35 @@
 
     <footer class="container-fluid footer px-5 py-5">
 
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 pb-5">
-    
-    <div class="col our-branches">
-        <h3>Our Branches</h3>
-        <a href="#"> <i class="fas fa-map-marker-alt"></i> JAPAN </a>
-        <a href="#"> <i class="fas fa-map-marker-alt"></i> China </a>
-        <a href="#"> <i class="fas fa-map-marker-alt"></i> MYANMAR </a>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 pb-5">
+        
+        <div class="col our-branches">
+            <h3>Our Branches</h3>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> JAPAN </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> China </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> MYANMAR </a>
+        </div>
+
+        <div class="col contact-info">
+            <h3>Contact Info</h3>
+            <a href="#"> <i class="fas fa-phone-alt"></i> +123-456-7890 </a>
+            <a href="#"> <i class="fas fa-phone-alt"></i> +111-222-3333 </a>
+            <a href="#"> <i class="fas fa-envelope"></i> example@gmail.com </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> Yangon, Myanmar - 11011 </a>
+        </div>
+
+        <div class="col social-info">
+            <h3>Social Info</h3>
+            <a href="#"> <i class="fab fa-facebook-f"></i> Facebook </a>
+            <a href="#"> <i class="fab fa-twitter"></i> Twitter </a>
+            <a href="#"> <i class="fab fa-instagram"></i> Instagram </a>
+        </div>
+
     </div>
 
-    <div class="col contact-info">
-        <h3>Contact Info</h3>
-        <a href="#"> <i class="fas fa-phone-alt"></i> +123-456-7890 </a>
-        <a href="#"> <i class="fas fa-phone-alt"></i> +111-222-3333 </a>
-        <a href="#"> <i class="fas fa-envelope"></i> example@gmail.com </a>
-        <a href="#"> <i class="fas fa-map-marker-alt"></i> Yangon, Myanmar - 11011 </a>
-    </div>
+    <div class="credit text-center pt-5"> 	&copy; Created by Nano-Silent - 2022  </div>
 
-    <div class="col social-info">
-        <h3>Social Info</h3>
-        <a href="#"> <i class="fab fa-facebook-f"></i> Facebook </a>
-        <a href="#"> <i class="fab fa-twitter"></i> Twitter </a>
-        <a href="#"> <i class="fab fa-instagram"></i> Instagram </a>
-    </div>
-
-</div>
-
-<div class="credit text-center pt-5"> 	&copy; Created by Nano-Silent - 2022  </div>
-
-</footer>
+    </footer>
 
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 <!-- Sweet Alert -->

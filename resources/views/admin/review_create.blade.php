@@ -14,16 +14,16 @@
                   <h2 class="card-title"><b>Review Create Panel</b></h2>
                 </div>
                 <div class="ms-auto p-2 bd-highlight">
-                   <a href="{{route('review.index')}}" style="float:right;" class="btn btn-secondary">Back</a>
+                   <a href="{{ route('review.index') }}" style="float:right;" class="btn btn-secondary">Back</a>
                 </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form action="{{route('review.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('review.store') }}" method="POST" enctype="multipart/form-data">
                   @csrf
                   <div class="form-group">
                     <label for="customer_name">Customer Name</label>
-                    <input type="text" class="form-control @error('customer_name') is-invalid @enderror" id="customer_name" name="customer_name" value="{{old('customer_name')}}">
+                    <input type="text" class="form-control @error('customer_name') is-invalid @enderror" id="customer_name" name="customer_name" value="{{ old('customer_name') }}">
                   </div>
                   @error('customer_name')
                     <div class="alert alert-danger">{{ $message }}</div>

@@ -14,24 +14,24 @@
                   <h2 class="card-title"><b>Review Create Panel</b></h2>
                 </div>
                 <div class="ms-auto p-2 bd-highlight">
-                   <a href="{{route('category.index')}}" style="float:right;" class="btn btn-secondary">Back</a>
+                   <a href="{{ route('category.index') }}" style="float:right;" class="btn btn-secondary">Back</a>
                 </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form action="{{route('category.update',[$category->id])}}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('category.update',[$category->id]) }}" method="POST" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
                   <div class="form-group">
                     <label for="transmission_name">Transmission name</label>
-                    <input type="text" class="form-control @error('transmission_name') is-invalid @enderror" id="transmission_name" name="transmission_name" value="{{old('transmission_name', $category->transmission_name)}}">
+                    <input type="text" class="form-control @error('transmission_name') is-invalid @enderror" id="transmission_name" name="transmission_name" value="{{ old('transmission_name', $category->transmission_name) }}">
                   </div>
                   @error('transmission_name')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                   <div class="form-group">
                     <label for="power_name">Power name</label>
-                    <input type="text" class="form-control @error('power_name') is-invalid @enderror" id="power_name" name="power_name" value="{{old('power_name', $category->power_name)}}">
+                    <input type="text" class="form-control @error('power_name') is-invalid @enderror" id="power_name" name="power_name" value="{{ old('power_name', $category->power_name) }}">
                   </div>
                   @error('power_name')
                     <div class="alert alert-danger">{{ $message }}</div>

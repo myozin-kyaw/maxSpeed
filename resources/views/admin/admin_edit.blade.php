@@ -25,31 +25,31 @@
                   <h2 class="card-title"><b>Admin Create Panel</b></h2>
                 </div>
                 <div class="ms-auto p-2 bd-highlight">
-                   <a href="{{route('admin.index')}}" style="float:right;" class="btn btn-secondary">Back</a>
+                   <a href="{{ route('admin.index') }}" style="float:right;" class="btn btn-secondary">Back</a>
                 </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form action="{{route('admin.update', [$admin->id])}}" method="post">
+                <form action="{{ route('admin.update', [$admin->id]) }}" method="POST">
                   @csrf
                   @method('PUT')
                   <div class="form-group">
                       <label for="brand">Name</label>
-                      <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{old('name', $admin->name)}}">
+                      <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $admin->name) }}">
                   </div>
                   @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                   <div class="form-group">
                       <label for="email">Email</label>
-                      <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{old('email', $admin->email)}}">
+                      <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $admin->email) }}">
                   </div>
                   @error('email')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                   <div class="form-group position-relative">
                       <label for="password">Password</label>
-                      <input type="password" id="pass" class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{old('password', $admin->password)}}">
+                      <input type="password" id="pass" class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password', $admin->password) }}">
                       <span id="pass-open"><i class="far fa-eye"></i></span>
                       <span id="pass-close"><i class="far fa-eye-slash"></i></span>
                   </div>

@@ -215,10 +215,3 @@ var swiper = new Swiper(".review-slider", {
     },
   },
 });
-
-/* Add to cart */
-const cart_btn = document.getElementById('cart-btn');
-
-cart_btn.addEventListener('click', function() {
-
-})

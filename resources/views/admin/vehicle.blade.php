@@ -14,7 +14,7 @@
                     <h3>Vehicles DataTable</h3>
                 </div>
                 <div class="ms-auto p-2 bd-highlight">
-                    <a href="{{route('vehicle.create')}}" style="float:right;" class="btn btn-success">Create</a>
+                    <a href="{{ route('vehicle.create') }}" style="float:right;" class="btn btn-success">Create</a>
                 </div>
               </div>
               @if (session('uploaded'))
@@ -47,17 +47,17 @@
                   <tbody>
                   @foreach($vehicles as $vehicle)
                   <tr>
-                    <td>{{$vehicle->brand}}</td>
-                    <td>{{$vehicle->model}}</td>
-                    <td>{{$vehicle->price}}</td>
-                    <td>{{$vehicle->production_year}}</td>
-                    <td>{{$vehicle->speed}}</td>
-                    <td>{{$vehicle->transmission->transmission_name}}</td>
-                    <td>{{$vehicle->power->power_name}}</td>
+                    <td>{{ $vehicle->brand }}</td>
+                    <td>{{ $vehicle->model }}</td>
+                    <td>{{ $vehicle->price }}</td>
+                    <td>{{ $vehicle->production_year }}</td>
+                    <td>{{ $vehicle->speed }}</td>
+                    <td>{{ $vehicle->transmission->transmission_name }}</td>
+                    <td>{{ $vehicle->power->power_name }}</td>
                     <td>
                         <div class="form-row">
-                            <a style="height:40px; margin-right:10px;" href="{{route('vehicle.edit',[$vehicle->id])}}" class="btn btn-warning">Edit</a>
-                            <form action="{{route('vehicle.destroy',[$vehicle->id])}}" method="POST">
+                            <a style="height:40px; margin-right:10px;" href="{{ route('vehicle.edit',[$vehicle->id]) }}" class="btn btn-warning">Edit</a>
+                            <form action="{{ route('vehicle.destroy',[$vehicle->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger">Delete</button>

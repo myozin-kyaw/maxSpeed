@@ -14,44 +14,44 @@
                   <h2 class="card-title"><b>Vehicle Create Panel</b></h2>
                 </div>
                 <div class="ms-auto p-2 bd-highlight">
-                   <a href="{{route('vehicle.index')}}" style="float:right;" class="btn btn-secondary">Back</a>
+                   <a href="{{ route('vehicle.index') }}" style="float:right;" class="btn btn-secondary">Back</a>
                 </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form action="{{route('vehicle.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('vehicle.store') }}" method="POST" enctype="multipart/form-data">
                   @csrf
                   <div class="form-group">
                       <label for="brand">Brand</label>
-                      <input type="text" class="form-control @error('brand') is-invalid @enderror" id="brand" name="brand" value="{{old('brand')}}">
+                      <input type="text" class="form-control @error('brand') is-invalid @enderror" id="brand" name="brand" value="{{ old('brand') }}">
                   </div>
                   @error('brand')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                   <div class="form-group">
                       <label for="model">Model</label>
-                      <input type="text" class="form-control @error('model') is-invalid @enderror" id="model" name="model" value="{{old('model')}}">
+                      <input type="text" class="form-control @error('model') is-invalid @enderror" id="model" name="model" value="{{ old('model') }}">
                   </div>
                   @error('model')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                   <div class="form-group">
                       <label for="price">Price</label>
-                      <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{old('price')}}">
+                      <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price') }}">
                   </div>
                   @error('price')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                   <div class="form-group">
                       <label for="year">Production Year</label>
-                      <input type="text" class="form-control @error('production_year') is-invalid @enderror" id="year" name="production_year" value="{{old('year')}}">
+                      <input type="text" class="form-control @error('production_year') is-invalid @enderror" id="year" name="production_year" value="{{ old('year') }}">
                   </div>
                   @error('production_year')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                   <div class="form-group">
                       <label for="speed">Speed</label>
-                      <input type="text" class="form-control @error('speed') is-invalid @enderror" id="speed" name="speed" value="{{old('speed')}}">
+                      <input type="text" class="form-control @error('speed') is-invalid @enderror" id="speed" name="speed" value="{{ old('speed') }}">
                   </div>
                   @error('speed')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -61,7 +61,7 @@
                       <select name="transmission_id" class="form-control @error('transmission_id') is-invalid @enderror">
                           <option value="">Select Transmission</option>
                           @foreach($categories as $category)
-                          <option value="{{$category->id}}">{{$category->transmission_name}}</option>
+                          <option value="{{ $category->id }}">{{ $category->transmission_name }}</option>
                           @endforeach
                       </select>
                   </div>
@@ -73,7 +73,7 @@
                       <select name="power_id" class="form-control @error('power_id') is-invalid @enderror">
                           <option value="">Select Power</option>
                           @foreach($categories as $category)
-                          <option value="{{$category->id}}">{{$category->power_name}}</option>
+                          <option value="{{ $category->id }}">{{ $category->power_name }}</option>
                           @endforeach
                       </select>
                   </div>

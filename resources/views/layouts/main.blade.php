@@ -60,7 +60,19 @@
 
 </footer>
 
+<script>
+    const order = document.getElementById('order');
+    const close_orderForm = document.getElementById('close-orderForm');
+    order.addEventListener('click', function() {
+        document.getElementById('order-From').style.display = "block";
+        close_orderForm.style.display = "block";
+    })
+    close_orderForm.addEventListener('click', function() {
+        document.getElementById('order-From').style.display = "none";
+        close_orderForm.style.display = "none";
+    })
 
+</script>
 <!-- Bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 

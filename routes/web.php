@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerReviewsController;
@@ -24,6 +25,8 @@ Route::get('/', ['middleware' => 'isadmin', HomeController::class, 'index'])->na
 Route::get('vehicle_show/{id}', ['middleware' => 'isadmin', HomeController::class, 'show'])->name('vehicle_show');
 Route::get('review_show/{id}', ['middleware' => 'isadmin', HomeController::class, 'review_show'])->name('review_show');
 Route::get('search',[HomeController::class, 'search'])->name('search');
+Route::post('order_submit', [OrderController::class, 'submit'])->name('order.submit'); // user order 
+Route::get('order', [OrderController::class, 'order'])->name('admin.order'); // orderList 
 
 /* Admin routes */
 Route::resource('vehicle', VehicleController::class, ['names' => 'vehicle'])->middleware('isadmin');

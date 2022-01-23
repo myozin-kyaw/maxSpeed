@@ -42,29 +42,35 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="{{route('vehicle.index')}}" class="nav-link {{ (request()->segment(1) == 'vehicle') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Vehicles</p>
-                    </a>
+               <li class="nav-item">
+                  <a href="{{ route('admin.order') }}" class="nav-link {{ (request()->segment(1) == 'order') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Order</p>
+                  </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('category.index')}}" class="nav-link {{ (request()->segment(1) == 'category') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Category</p>
-                    </a>
+                  <a href="{{ route('vehicle.index') }}" class="nav-link {{ (request()->segment(1) == 'vehicle') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Vehicles</p>
+                  </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('review.index')}}" class="nav-link {{ (request()->segment(1) == 'review') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Customer Reviews</p>
-                    </a>
+                  <a href="{{ route('category.index') }}" class="nav-link {{ (request()->segment(1) == 'category') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Category</p>
+                  </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('admin.index')}}" class="nav-link {{ (request()->segment(1) == 'admin') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Create Admin</p>
-                    </a>
+                  <a href="{{ route('review.index') }}" class="nav-link {{ (request()->segment(1) == 'review') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Customer Reviews</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('admin.index') }}" class="nav-link {{ (request()->segment(1) == 'admin') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Create Admin</p>
+                  </a>
                 </li>
             </ul>
         </nav>

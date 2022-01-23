@@ -17,7 +17,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::check() ){
+        if (Auth::check()) {
             $vehicle = PopularVehicle::findOrFail($request->input('vehicle_id'));
             $cart = new Cart();
             $cart->brand = $vehicle->brand;

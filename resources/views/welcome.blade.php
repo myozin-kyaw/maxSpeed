@@ -122,6 +122,7 @@
                 </div>
 
             </nav>
+            
             <!-- Interested Item -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
 

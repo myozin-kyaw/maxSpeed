@@ -24,27 +24,39 @@
               <!-- /.card-header -->
               <div class="card-body">
               <div class="row row-cols-1 row-cols-md-2 g-4">
-                @foreach($orders as $order)
-                <div class="col">
-                  <div class="card" style="width: 18rem;">
-                  <img style="border-bottom:1px solid #ccc;" src="{{ url('/images/orderIdentity/' . $order->image) }}">
-                    <div class="card-body">
-                      <h5 class="card-title">Order Brand & Model : {{ $order->brand }} | {{ $order->model }}</h5>
-                      <p class="card-text">Order at : {{ $order->created_at }}</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Customer name : {{ $order->name }}</li>
-                      <li class="list-group-item">Email : {{ $order->email }}</li>
-                      <li class="list-group-item">Phone : {{ $order->phone }}</li>
-                      <li class="list-group-item">Address : {{ $order->address }}</li>
-                    </ul>
-                    <div class="card-body">
-                      <a href="#" class="btn btn-warning">Finish</a>
-                      <a href="#" class="btn btn-danger">Cancel</a>
+                @forelse($orders as $order)
+                  <div class="col">
+                    <div class="card" style="width: 18rem;">
+                    <img style="border-bottom:1px solid #ccc;" src="{{ url('/images/orderIdentity/' . $order->image) }}">
+                      <div class="card-body">
+                        <h5 class="card-title">Order Brand & Model : {{ $order->brand }} | {{ $order->model }}</h5>
+                        <p class="card-text">Order at : {{ $order->created_at }}</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Customer name : {{ $order->name }}</li>
+                        <li class="list-group-item">Email : {{ $order->email }}</li>
+                        <li class="list-group-item">Phone : {{ $order->phone }}</li>
+                        <li class="list-group-item">Address : {{ $order->address }}</li>
+                      </ul>
+                      <div class="card-body" style="display:flex;gap:10px;">
+                        <form action="{{ route('admin.order_finish', [$order->id]) }}" method="GET">
+                          @csrf
+                          @method('DELETE')
+                          <button class="btn btn-warning" type="submit">Finish</button>
+                        </form>
+                        <form action="{{ route('admin.order_finish', [$order->id]) }}" method="GET">
+                          @csrf
+                          @method('DELETE')
+                          <button class="btn btn-danger" type="submit">Cancel</button>
+                        </form>
+                      </div>
                     </div>
                   </div>
-                </div>
-                @endforeach
+                @empty
+
+                  <h3 class="my-5 text-center">Not result yet ... </h3>
+
+                @endforelse
               </div>
               </div>
               <!-- /.card-body -->

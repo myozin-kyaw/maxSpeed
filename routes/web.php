@@ -27,6 +27,7 @@ Route::get('review_show/{id}', ['middleware' => 'isadmin', HomeController::class
 Route::get('search',[HomeController::class, 'search'])->name('search');
 Route::post('order_submit', [OrderController::class, 'submit'])->name('order.submit'); // user order 
 Route::get('order', [OrderController::class, 'order'])->name('admin.order'); // orderList 
+Route::get('/order_finish/{id}', [OrderController::class, 'order_finish'])->name('admin.order_finish');
 
 /* Admin routes */
 Route::resource('vehicle', VehicleController::class, ['names' => 'vehicle'])->middleware('isadmin');

@@ -43,4 +43,10 @@ class OrderController extends Controller
         return view('admin.order', compact('orders'));
     }
 
+    public function order_finish($id)
+    {
+        $order = Order::findOrFail($id)->delete();
+        return redirect('/order')->with('finished', 'Order is successfully finished');
+    }
+
 }

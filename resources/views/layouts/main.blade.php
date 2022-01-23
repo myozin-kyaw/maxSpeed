@@ -43,15 +43,15 @@
         <h3>Contact Info</h3>
         <a href="#"> <i class="fas fa-phone-alt"></i> +123-456-7890 </a>
         <a href="#"> <i class="fas fa-phone-alt"></i> +111-222-3333 </a>
-        <a href="#"> <i class="fas fa-envelope"></i> example@gmail.com </a>
+        <a href="mailto:example@gmail.com"> <i class="fas fa-envelope"></i> example@gmail.com </a>
         <a href="#"> <i class="fas fa-map-marker-alt"></i> Yangon, Myanmar - 11011 </a>
     </div>
 
     <div class="col social-info">
         <h3>Social Info</h3>
-        <a href="#"> <i class="fab fa-facebook-f"></i> Facebook </a>
-        <a href="#"> <i class="fab fa-twitter"></i> Twitter </a>
-        <a href="#"> <i class="fab fa-instagram"></i> Instagram </a>
+        <a href="https://www.facebook.com/Tnelis10/" target="_blank"> <i class="fab fa-facebook-f"></i> Facebook </a>
+        <a href="https://t.me/Noahs301/"> <i class="fab fa-telegram"></i> Telegram </a>
+        <a href="https://www.instagram.com/myozin301/"> <i class="fab fa-instagram"></i> Instagram </a>
     </div>
 
 </div>

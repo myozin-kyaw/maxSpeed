@@ -128,12 +128,7 @@
 
                 <div class="offcanvas-header">
 
-                    <div class="dFlexLR">
-                        <h4 id="offcanvasRightLabel"><i class="fas fa-cart-arrow-down"></i> Cart Item</h4>
-                        <form action="">
-                            <button class="btn"><i class="fas fa-trash-alt"></i></button>
-                        </form>
-                    </div>
+                    <h4 id="offcanvasRightLabel"><i class="fas fa-cart-arrow-down"></i> Cart Item({{ count($carts) }})</h4>
 
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 
@@ -478,9 +473,9 @@
 
         <div class="col social-info">
             <h3>Social Info</h3>
-            <a href="#"> <i class="fab fa-facebook-f"></i> Facebook </a>
-            <a href="#"> <i class="fab fa-twitter"></i> Twitter </a>
-            <a href="#"> <i class="fab fa-instagram"></i> Instagram </a>
+            <a href="https://www.facebook.com/Tnelis10/" target="_blank"> <i class="fab fa-facebook-f"></i> Facebook </a>
+            <a href="https://t.me/Noahs301/" target="_blank"> <i class="fab fa-telegram"></i> Telegram </a>
+            <a href="https://www.instagram.com/myozin301/" target="_blank"> <i class="fab fa-instagram"></i> Instagram </a>
         </div>
 
     </div>

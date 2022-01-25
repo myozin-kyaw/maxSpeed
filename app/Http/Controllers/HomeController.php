@@ -41,4 +41,9 @@ class HomeController extends Controller
             return view('search',compact('items'));
         }
     }
+
+    public function service() 
+    {
+        return view('service');
+    }
 }

@@ -23,41 +23,42 @@
                 @endif
               <!-- /.card-header -->
               <div class="card-body">
-              <div class="row row-cols-1 row-cols-md-2 g-4">
                 @forelse($orders as $order)
-                  <div class="col">
-                    <div class="card" style="width: 18rem;">
-                    <img style="border-bottom:1px solid #ccc;" src="{{ url('/images/orderIdentity/' . $order->image) }}">
+                <div class="card mb-3" style="max-width: 900px;">
+                  <div class="row g-0">
+                    <div class="col-md-6">
+                      <img style="width: 400px;height: auto;;" src="{{ url('/images/orderIdentity/' . $order->image) }}">
+                    </div>
+                    <div class="col-md-6">
                       <div class="card-body">
-                        <h5 class="card-title">Order Brand & Model : {{ $order->brand }} | {{ $order->model }}</h5>
-                        <p class="card-text">Order at : {{ $order->created_at }}</p>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Customer name : {{ $order->name }}</li>
-                        <li class="list-group-item">Email : {{ $order->email }}</li>
-                        <li class="list-group-item">Phone : {{ $order->phone }}</li>
-                        <li class="list-group-item">Address : {{ $order->address }}</li>
-                      </ul>
-                      <div class="card-body" style="display:flex;gap:10px;">
-                        <form action="{{ route('admin.order_finish', [$order->id]) }}" method="GET">
-                          @csrf
-                          @method('DELETE')
-                          <button class="btn btn-warning" type="submit">Finish</button>
-                        </form>
-                        <form action="{{ route('admin.order_finish', [$order->id]) }}" method="GET">
-                          @csrf
-                          @method('DELETE')
-                          <button class="btn btn-danger" type="submit">Cancel</button>
-                        </form>
+                        <h5 class="card-title">Brand & Model : {{ $order->brand }} | {{ $order->model }}</h5>
+                        <p class="card-text">Customer name : {{ $order->name }}</p>
+                        <p class="card-text">Email : {{ $order->email }}</p>
+                        <p class="card-text">Phone : {{ $order->phone }}</p>
+                        <p class="card-text">Address : {{ $order->address }}</p>
+                        <p class="card-text"><small class="text-muted">Order at : {{ $order->created_at }}</small></p>
+                        <div class="card-body" style="display:flex;gap:10px;">
+                          <form action="{{ route('admin.order_finish', [$order->id]) }}" method="GET">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-warning" type="submit">Finish</button>
+                          </form>
+                          <form action="{{ route('admin.order_finish', [$order->id]) }}" method="GET">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit">Cancel</button>
+                          </form>
+                        </div>
                       </div>
                     </div>
                   </div>
+                </div>
                 @empty
 
                   <h3 class="my-5 text-center">Not result yet ... </h3>
 
                 @endforelse
-              </div>
+                  
               </div>
               <!-- /.card-body -->
             </div>

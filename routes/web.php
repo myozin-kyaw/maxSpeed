@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\CustomerReviewsController;
 
 /*
@@ -34,6 +35,9 @@ Route::resource('vehicle', VehicleController::class, ['names' => 'vehicle'])->mi
 Route::resource('category', CategoryController::class, ['names' => 'category'])->middleware('isadmin');
 Route::resource('review', CustomerReviewsController::class, ['names' => 'review'])->middleware('isadmin');
 Route::resource('admin', AdminController::class, ['names' => 'admin'])->middleware('isadmin');
+
+/* Service */
+Route::get('/service', [HomeController::class, 'service'])->name('welcome.service');
 
 /* Add to Cart */
 Route::post('/cart_store', [CartController::class, 'store'])->name('cart.store');

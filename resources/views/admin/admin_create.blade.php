@@ -1,6 +1,17 @@
 @extends('layouts.master')
 
 @section('content')
+<style type="text/css">
+  #pass-closeC, #pass-openC {
+    cursor: pointer;
+    position: absolute;
+    top:2.5em;
+    right:1em;
+  }
+  #pass-openC {
+    display:none;
+  }
+</style>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Main content -->
@@ -35,9 +46,11 @@
                   @error('email')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
-                  <div class="form-group">
+                  <div class="form-group position-relative">
                       <label for="password">Password</label>
                       <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') }}">
+                      <span id="pass-openC"><i class="far fa-eye"></i></span>
+                      <span id="pass-closeC"><i class="far fa-eye-slash"></i></span>
                   </div>
                   @error('password')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -67,5 +80,20 @@
     </section>
     <!-- /.content -->
   </div>
+
+  <script>  
+    const pass_openC = document.getElementById('pass-openC');
+    const pass_closeC = document.getElementById('pass-closeC');
+    pass_closeC.addEventListener('click',function() {
+      document.getElementById('password').setAttribute('type', 'text');
+      pass_closeC.style.display = 'none';
+      pass_openC.style.display = 'block';
+    })  
+    pass_openC.addEventListener('click',function() {
+      document.getElementById('password').setAttribute('type', 'password');
+      pass_openC.style.display = 'none';
+      pass_closeC.style.display = 'block';
+    })
+  </script>
 
 @endsection

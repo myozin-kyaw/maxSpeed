@@ -629,62 +629,6 @@ section.services .box-container .box p {
 }
 
 /* ----------------------------- */
-/* Section: Subscribe */
-/* ----------------------------- */
-
-section.subscribe{
-    background: url('/projectImage/subscribe-bg.png') no-repeat;
-    background-size: cover;
-    background-position: center;
-    text-align: center;
-    margin-bottom: 1em;
-}
-
-.subscribe h2 {
-    font-size: 2.5em;
-}
-
-.subscribe p{
-    font-size: 1.5em;
-    padding:1em 0;
-}
-
-.subscribe form {
-    max-width: 50em;
-    height:4em;
-    background: var(--white);
-    border-radius: 3em;
-    overflow:hidden;
-    display: flex;
-    margin: 1em auto;
-    box-shadow: var(--box-shadow);
-}
-
-.subscribe form input[type="email"]{
-    height: 100%;
-    width:100%;
-    padding:0 2em;
-    font-size: 1.6em;
-    color:var(--dark-blue);
-    text-transform: none;
-    border: none;
-}
-
-.subscribe form input[type="submit"]{
-    height: 100%;
-    width: 17em;
-    font-size: 1.7em;
-    color:var(--black);
-    background: var(--light-main-color);
-    cursor: pointer;
-    border: none;
-}
-
-.subscribe form input[type="submit"]:hover{
-    background: var(--main-color);
-}
-
-/* ----------------------------- */
 /* footer */
 /* ----------------------------- */
 
@@ -745,20 +689,6 @@ footer .credit {
     .contact h2.heading {
         margin-bottom: .5em;
     }
-    
-    /* Section: Subscribe */
-    .subscribe form{
-        max-width: 35em;
-    }
-    .subscribe form input[type="submit"]{
-        width: 8em;
-    }
-    .subscribe h2 {
-        font-size: 2em;
-    }
-    .subscribe p{
-        font-size: 1.2em;
-    }
 
     /* Footer */
     footer .row .our-branches,
@@ -791,19 +721,5 @@ footer .credit {
     .contact .row .map{
         padding: 1em;
         height: 50vh;
-    }
-
-    /* Section: Subscribe */
-    .subscribe form {
-        font-size: .7em;
-    }
-    .subscribe form input[type="submit"]{
-        width: 8em;
-    }
-    .subscribe h2 {
-        font-size: 1.5em;
-    }
-    .subscribe p{
-        font-size: 1em;
     }
 }

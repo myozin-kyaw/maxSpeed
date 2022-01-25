@@ -64,7 +64,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link scroll-Services" href="#">Services</a>
+                                <a class="nav-link scroll-Services" href="{{ route('welcome.service') }}">Services</a>
                             </li>
 
                             <li class="nav-item">
@@ -318,102 +318,7 @@
         
     </section>
 
-    <!-- Section: Service -->
-    <section class="container-fluid px-5 py-5 text-warning services" id="services">
-
-        <h2 class="heading text-center mb-5"> Our <span>Services</span> </h2>
-
-        <div class="box-container">
-
-            <div class="box">
-                <i class="fas fa-key"></i>
-                <h3>Car Selling</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
-                <a href="#" class="btn" id="service_carSelling"> Read more</a>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-car"></i>
-                <h3>Car Rental</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
-                <a href="#" class="btn" id="service_carRental"> Read more</a>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-tools"></i>
-                <h3>Part Repairs</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
-                <a href="#" class="btn" id="service_partRepair"> Read more</a>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-car-crash"></i>
-                <h3>Car Insurance</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
-                <a href="#" class="btn" id="service_carInsurance"> Read more</a>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-car-battery"></i>
-                <h3>Battery Replacement</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
-                <a href="#" class="btn" id="service_battery"> Read more</a>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-gas-pump"></i>
-                <h3>Oil Change</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
-                <a href="#" class="btn" id="service_oilChange"> Read more</a>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-cogs"></i>
-                <h3>Car Accessories</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
-                <a href="#" class="btn" id="service_accessory"> Read more</a>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-user-lock"></i>
-                <h3>Membership Services</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
-                <a href="#" class="btn" id="service_member"> Read more</a>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-headset"></i>
-                <h3>24/7 Support</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
-                <a href="#" class="btn" id="service_support"> Read more</a>
-            </div>
-
-        </div>
-            
-    </section>
-
-    <section class="contact px-5" id="contact">
-
-        <h2 class="heading text-center"><span>Contact</span> us</h2>
-    
-        <div class="row px-4">
-    
-            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3818.7613160528203!2d96.12903241418924!3d16.838192988409883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c1950c3df8866d%3A0x2968075ed5dda0ef!2sCar%20Showroom!5e0!3m2!1sen!2ssg!4v1640575467618!5m2!1sen!2ssg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    
-            <form action="" method="POST">
-                <h3>Get In Touch</h3>
-                <input type="text" placeholder="Your name" class="box" name="your_name">
-                <input type="email" placeholder="Your email" class="box" name="your_email">
-                <input type="tel" placeholder="Subject" class="box" name="subject">
-                <textarea placeholder="Your message" name="your_message" class="box" cols="30" rows="4"></textarea>
-                <button type="submit" name="submit" class="btn">Send message</button>
-            </form>
-    
-        </div>
-    
-    </section>
-
-    <section class="reviews px-5 pt-5" id="reviews">
+    <section class="reviews px-5 mt-3" id="reviews">
 
         <h2 class="heading text-center mb-5"> Client's <span>review</span> </h2>
     
@@ -440,47 +345,56 @@
     
     </section>
 
-    <section class="subscribe py-5">
+    <section class="contact mx-5 pb-5 pt-3" id="contact">
+
+        <h2 class="heading text-center"><span>Contact</span> us</h2>
     
-        <h2>Subscribe For Latest Updates</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, suscipit.</p>
+        <div class="row px-4">
     
-       <form action="#" method="POST">
-            <input type="email" name="subscribe_email" placeholder="Enter your email">
-            <input type="submit" name="subscribe_submit" value="subscribe">
-       </form>
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3818.7613160528203!2d96.12903241418924!3d16.838192988409883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c1950c3df8866d%3A0x2968075ed5dda0ef!2sCar%20Showroom!5e0!3m2!1sen!2ssg!4v1640575467618!5m2!1sen!2ssg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    
+            <form action="" method="POST">
+                <h3>Get In Touch</h3>
+                <input type="text" placeholder="Your name" class="box" name="your_name">
+                <input type="email" placeholder="Your email" class="box" name="your_email">
+                <input type="tel" placeholder="Subject" class="box" name="subject">
+                <textarea placeholder="Your message" name="your_message" class="box" cols="30" rows="4"></textarea>
+                <button type="submit" name="submit" class="btn">Send message</button>
+            </form>
+    
+        </div>
     
     </section>
 
     <footer class="container-fluid footer px-5 py-5">
 
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 pb-5">
-        
-        <div class="col our-branches">
-            <h3>Our Branches</h3>
-            <a href="#"> <i class="fas fa-map-marker-alt"></i> JAPAN </a>
-            <a href="#"> <i class="fas fa-map-marker-alt"></i> China </a>
-            <a href="#"> <i class="fas fa-map-marker-alt"></i> MYANMAR </a>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 pb-5">
+            
+            <div class="col our-branches">
+                <h3>Our Branches</h3>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> JAPAN </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> China </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> MYANMAR </a>
+            </div>
+
+            <div class="col contact-info">
+                <h3>Contact Info</h3>
+                <a href="#"> <i class="fas fa-phone-alt"></i> +123-456-7890 </a>
+                <a href="#"> <i class="fas fa-phone-alt"></i> +111-222-3333 </a>
+                <a href="#"> <i class="fas fa-envelope"></i> example@gmail.com </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> Yangon, Myanmar - 11011 </a>
+            </div>
+
+            <div class="col social-info">
+                <h3>Social Info</h3>
+                <a href="https://www.facebook.com/Tnelis10/" target="_blank"> <i class="fab fa-facebook-f"></i> Facebook </a>
+                <a href="https://t.me/Noahs301/" target="_blank"> <i class="fab fa-telegram"></i> Telegram </a>
+                <a href="https://www.instagram.com/myozin301/" target="_blank"> <i class="fab fa-instagram"></i> Instagram </a>
+            </div>
+
         </div>
 
-        <div class="col contact-info">
-            <h3>Contact Info</h3>
-            <a href="#"> <i class="fas fa-phone-alt"></i> +123-456-7890 </a>
-            <a href="#"> <i class="fas fa-phone-alt"></i> +111-222-3333 </a>
-            <a href="#"> <i class="fas fa-envelope"></i> example@gmail.com </a>
-            <a href="#"> <i class="fas fa-map-marker-alt"></i> Yangon, Myanmar - 11011 </a>
-        </div>
-
-        <div class="col social-info">
-            <h3>Social Info</h3>
-            <a href="https://www.facebook.com/Tnelis10/" target="_blank"> <i class="fab fa-facebook-f"></i> Facebook </a>
-            <a href="https://t.me/Noahs301/" target="_blank"> <i class="fab fa-telegram"></i> Telegram </a>
-            <a href="https://www.instagram.com/myozin301/" target="_blank"> <i class="fab fa-instagram"></i> Instagram </a>
-        </div>
-
-    </div>
-
-    <div class="credit text-center pt-5"> 	&copy; Created by Nano-Silent - 2022  </div>
+        <div class="credit text-center pt-5"> 	&copy; Created by Nano-Silent - 2022  </div>
 
     </footer>
 

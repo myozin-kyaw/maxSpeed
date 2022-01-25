@@ -2,15 +2,15 @@
 
 @section('content')
 <style type="text/css">
-    #pass-close, #pass-open {
-        cursor: pointer;
-        position: absolute;
-        top:2.5em;
-        right:1em;
-    }
-    #pass-open {
-        display:none;
-    }
+  #pass-close, #pass-open {
+    cursor: pointer;
+    position: absolute;
+    top:2.5em;
+    right:1em;
+  }
+  #pass-open {
+    display:none;
+  }
 </style>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -48,8 +48,8 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                   <div class="form-group position-relative">
-                      <label for="password">Password</label>
-                      <input type="password" id="pass" class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password', $admin->password) }}">
+                      <label for="pass">Password</label>
+                      <input type="password" id="pass" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password', $admin->password) }}">
                       <span id="pass-open"><i class="far fa-eye"></i></span>
                       <span id="pass-close"><i class="far fa-eye-slash"></i></span>
                   </div>
@@ -85,16 +85,15 @@
     const pass_open = document.getElementById('pass-open');
     const pass_close = document.getElementById('pass-close');
     pass_close.addEventListener('click',function() {
-        document.getElementById('pass').setAttribute('type', 'text');
-        pass_close.style.display = 'none';
-        pass_open.style.display = 'block';
+      document.getElementById('pass').setAttribute('type', 'text');
+      pass_close.style.display = 'none';
+      pass_open.style.display = 'block';
     })  
     pass_open.addEventListener('click',function() {
-        document.getElementById('pass').setAttribute('type', 'password');
-        pass_open.style.display = 'none';
-        pass_close.style.display = 'block';
+      document.getElementById('pass').setAttribute('type', 'password');
+      pass_open.style.display = 'none';
+      pass_close.style.display = 'block';
     })    
-
   </script>
 
 @endsection

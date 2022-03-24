@@ -36,13 +36,13 @@ class vehicleEditRequest extends FormRequest
     public function messages()
     {
         return [
-            'brand.required' => 'Brand is required',
-            'model.required' => 'Model is required',
-            'price.required' => 'Price is required',
-            'production_year.required' => 'Production Year is required',
-            'speed.required' => 'Speed is required',
-            'transmission_id.required' => 'Transmission is required',
-            'power_id.required' => 'Power is required'
+            'brand' => 'Brand is required',
+            'model' => 'Model is required',
+            'price' => 'Price is required',
+            'production_year' => 'Production Year is required',
+            'speed' => 'Speed is required',
+            'transmission_id' => 'Transmission is required',
+            'power_id' => 'Power is required'
         ];
     }
 }

@@ -25,10 +25,10 @@ class VehicleCreateRequest extends FormRequest
     {
         return [
             'brand' => 'required:popular_vehicles|max:255',
-            'model' => 'required',
+            'model' => 'required|max:255',
             'price' => 'required',
             'production_year' => 'required',
-            'speed' => 'required',
+            'speed' => 'required|max:255',
             'transmission_id' => 'required',
             'power_id' => 'required',
             'image' => 'required|image'
@@ -37,14 +37,14 @@ class VehicleCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'brand.required' => 'Brand is required',
-            'model.required' => 'Model is required',
-            'price.required' => 'Price is required',
-            'production_year.required' => 'Production Year is required',
-            'speed.required' => 'Speed is required',
-            'transmission_id.required' => 'Transmission is required',
-            'power_id.required' => 'Power is required',
-            'image.required' => 'Image is required'
+            'brand' => 'Brand is required',
+            'model' => 'Model is required',
+            'price' => 'Price is required',
+            'production_year' => 'Production Year is required',
+            'speed' => 'Speed is required',
+            'transmission_id' => 'Transmission is required',
+            'power_id' => 'Power is required',
+            'image' => 'Image is required'
         ];
     }
 }

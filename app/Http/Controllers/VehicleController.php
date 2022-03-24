@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Models\PopularVehicle;
 use App\Http\Requests\vehicleEditRequest;
 use App\Http\Requests\VehicleCreateRequest;
@@ -46,21 +45,12 @@ class VehicleController extends Controller
      */
     public function store(VehicleCreateRequest $request)
     {
-        $vehicle = new PopularVehicle();
-        $vehicle->brand = $request->brand;
-        $vehicle->model = $request->model;
-        $vehicle->price = $request->price;
-        $vehicle->production_year = $request->production_year;
-        $vehicle->speed = $request->speed;
-        
+        $data = $request->validated();
         $imageName = date('YmdHis') . " . " . request()->image->getClientOriginalExtension();
         request()->image->move(public_path('images/vehicles'), $imageName);
-        $vehicle->image = $imageName;
-
-        $vehicle->transmission_id = $request->transmission_id;
-        $vehicle->power_id = $request->power_id;
-        $vehicle->save();
-        return redirect('/vehicle')->with('uploaded', config('upload.message.created'));
+        $data['image'] = $imageName;
+        PopularVehicle::create($data);
+        return redirect()->route('vehicle.index')->with('uploaded', config('upload.message.created'));
     }
 
     /**
@@ -71,7 +61,7 @@ class VehicleController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect()->route('vehicle.index');
     }
 
     /**
@@ -93,24 +83,16 @@ class VehicleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(vehicleEditRequest $request,PopularVehicle $vehicle)
+    public function update(VehicleEditRequest $request,PopularVehicle $vehicle)
     {
-        $vehicle->brand = $request->brand;
-        $vehicle->model = $request->model;
-        $vehicle->price = $request->price;
-        $vehicle->production_year = $request->production_year;
-        $vehicle->speed = $request->speed;
-        
+        $data = $request->validated();
         if($request->image) {
             $imageName = date('YmdHis') . " . " . request()->image->getClientOriginalExtension();
             request()->image->move(public_path('images/vehicles'), $imageName);
-            $vehicle->image = $imageName;
+            $data['image'] = $imageName;
         }
-
-        $vehicle->transmission_id = $request->transmission_id;
-        $vehicle->power_id = $request->power_id;
-        $vehicle->save();
-        return redirect('/vehicle')->with('uploaded', config('upload.message.updated'));
+        $vehicle->update($data);
+        return redirect()->route('vehicle.index')->with('uploaded', config('upload.message.updated'));
     }
 
     /**
@@ -122,6 +104,6 @@ class VehicleController extends Controller
     public function destroy(PopularVehicle $vehicle)
     {
         $vehicle->delete();
-        return redirect('/vehicle')->with('deleted', config('upload.message.deleted'));
+        return redirect()->route('vehicle.index')->with('deleted', config('upload.message.deleted'));
     }
 }

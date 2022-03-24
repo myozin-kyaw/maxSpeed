@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Requests\CategoryCreateRequest;
 
 class CategoryController extends Controller
@@ -44,11 +43,9 @@ class CategoryController extends Controller
      */
     public function store(CategoryCreateRequest $request)
     {
-        $category = new Category();
-        $category->transmission_name = $request->transmission_name;
-        $category->power_name = $request->power_name;
-        $category->save();
-        return redirect('/category')->with('uploaded', config('upload.message.created'));
+        $data = $request->validated();
+        Category::create($data);
+        return redirect()->route('category.index')->with('uploaded', config('upload.message.created'));
     }
 
     /**
@@ -59,7 +56,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect()->route('category.index');
     }
 
     /**
@@ -82,10 +79,9 @@ class CategoryController extends Controller
      */
     public function update(CategoryCreateRequest $request, Category $category)
     {
-        $category->transmission_name = $request->transmission_name;
-        $category->power_name = $request->power_name;
-        $category->save();
-        return redirect('/category')->with('uploaded', config('upload.message.updated'));
+        $data = $request->validated();
+        $category->update($data);
+        return redirect()->route('category.index')->with('uploaded', config('upload.message.updated'));
     }
 
     /**
@@ -97,6 +93,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect('/category')->with('deleted', config('upload.message.deleted'));
+        return redirect()->route('category.index')->with('deleted', config('upload.message.deleted'));
     }
 }

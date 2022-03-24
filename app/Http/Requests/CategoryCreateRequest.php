@@ -24,16 +24,16 @@ class CategoryCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'transmission_name' => 'required',
-            'power_name' => 'required',
+            'transmission_name' => 'max:255',
+            'power_name' => 'max:255',
         ];
     }
 
     public function messages()
     {
         return [
-            'transmission_name.required' => 'Transmission is required',
-            'power_name.required' => 'Power is required'
+            'transmission_name' => 'One name is required',
+            'power_name' => 'One name is required'
         ];
     }
 }

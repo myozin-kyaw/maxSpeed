@@ -17,19 +17,18 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::check()) {
-            $vehicle = PopularVehicle::findOrFail($request->input('vehicle_id'));
-            $cart = new Cart();
-            $cart->brand = $vehicle->brand;
-            $cart->model = $vehicle->model;
-            $cart->price = $vehicle->price;
-            $cart->image = $vehicle->image;
-            $cart->vehicle_id = $vehicle->id;
-            $cart->user_id = $request->input('user_id');
-            $cart->save();
+        $user_id_int = intval( $request->user_id );
+        if (Auth::id() == $user_id_int) {
+            $data = $request->all();
+            $vehicle_id_int = intval( $request->vehicle_id );
+            $price_int = intval( $request->price );
+            $data['user_id'] = $user_id_int;
+            $data['vehicle_id'] = $vehicle_id_int;
+            $data['price'] = $price_int;
+            Cart::create($data);
             return redirect('/')->with('message', 'successfully added to the cart');
         } else {
-            return redirect('login');
+            return redirect()->route('login');
         }
     }
 
@@ -41,7 +40,7 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        $cart = Cart::findOrFail($id)->delete();
+        Cart::findOrFail($id)->delete();
         return redirect('/')->with('message', 'successfully removed to the cart');
     }
 }

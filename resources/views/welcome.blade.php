@@ -218,10 +218,10 @@
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                                 <input type="hidden" name="vehicle_id" value="{{ $vehicle->id }}">
-                                <input type="hidden" name="vehicle_brand" value="{{ $vehicle->brand }}">
-                                <input type="hidden" name="vehicle_model" value="{{ $vehicle->model }}">
-                                <input type="hidden" name="vehicle_price" value="{{ $vehicle->price }}">
-                                <input type="hidden" name="vehicle_image" value="{{ $vehicle->image }}">
+                                <input type="hidden" name="brand" value="{{ $vehicle->brand }}">
+                                <input type="hidden" name="model" value="{{ $vehicle->model }}">
+                                <input type="hidden" name="price" value="{{ $vehicle->price }}">
+                                <input type="hidden" name="image" value="{{ $vehicle->image }}">
                                 <button class="btn" type="submit">Add to cart</button>
                             </form>
                         </div>

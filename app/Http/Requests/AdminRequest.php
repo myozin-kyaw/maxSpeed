@@ -25,18 +25,18 @@ class AdminRequest extends FormRequest
     {
         return [
             'name' => 'required:User|max:255',
-            'email' => 'required',
-            'password' => 'required',
-            'is_admin' => 'required',
+            'email' => 'required|max:255',
+            'password' => 'required|max:255',
+            'is_admin' => 'required|max:255',
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'Admin name is required',
-            'email.required' => 'Email is required',
-            'password.required' => 'password is required',
-            'is_admin.required' => 'Is Admin ? is required',
+            'name' => 'Admin name is required',
+            'email' => 'Email is required',
+            'password' => 'password is required',
+            'is_admin' => 'Is Admin ? is required',
         ];
     }
 }

@@ -52,6 +52,7 @@
                       <input type="password" id="pass" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password', $admin->password) }}">
                       <span id="pass-open"><i class="far fa-eye"></i></span>
                       <span id="pass-close"><i class="far fa-eye-slash"></i></span>
+                      <small> <span class="text-danger fw-bolder inline">*</span> Your password can be confused ,Don't worry To change new password just clear and rewrite your new password.</small>
                   </div>
                   @error('password')
                     <div class="alert alert-danger">{{ $message }}</div>

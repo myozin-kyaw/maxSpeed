@@ -9,6 +9,7 @@ class PopularVehicle extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     public function transmission() 
     {
         return $this->belongsTo('App\Models\Category', 'transmission_id');

@@ -38,15 +38,10 @@ class AdminController extends Controller
      */
     public function store(AdminRequest $request)
     {
-        $admin = new User();
-        $admin->name = $request->name;
-        $admin->email = $request->email;
-
-        $password = Hash::make($request->password);
-        $admin->password = $password;
-        $admin->is_admin = $request->is_admin;
-        $admin->save();
-        return redirect('/admin')->with('uploaded', config('upload.admin.created'));
+        $data = $request->validated();
+        $data['password'] = Hash::make($request->password);
+        User::create($data);
+        return redirect()->route('admin.index')->with('uploaded', config('upload.admin.created'));
     }
 
     /**
@@ -57,7 +52,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect()->rotue('admin.index');
     }
 
     /**
@@ -80,14 +75,10 @@ class AdminController extends Controller
      */
     public function update(AdminRequest $request, User $admin)
     {
-        $admin->name = $request->name;
-        $admin->email = $request->email;
-
-        $password = Hash::make($request->password);
-        $admin->password = $password;
-        $admin->is_admin = $request->is_admin;
-        $admin->save();
-        return redirect('/admin')->with('uploaded', config('upload.admin.updated'));
+        $data = $request->validated();
+        $data['password'] = Hash::make($request->password);
+        $admin->update($data);
+        return redirect()->route('admin.index')->with('uploaded', config('upload.admin.updated'));
     }
 
     /**
@@ -99,6 +90,6 @@ class AdminController extends Controller
     public function destroy(User $admin)
     {
         $admin->delete();
-        return redirect('/admin')->with('deleted', config('upload.admin.deleted'));
+        return redirect()->route('admin.index')->with('deleted', config('upload.admin.deleted'));
     }
 }

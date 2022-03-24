@@ -58,8 +58,8 @@
                   <div class="form-group">
                       <label for="is_admin">Is Admin ?</label>
                       <select name="is_admin" class="form-control @error('is_admin') is-invalid @enderror">
-                          <option value="">Select Is Admin ?</option>
-                          <option value="1" selected>Admin</option>
+                          <option>Select Is Admin ?</option>
+                          <option value="1">Admin</option>
                       </select>
                   </div>
                   @error('is_admin')

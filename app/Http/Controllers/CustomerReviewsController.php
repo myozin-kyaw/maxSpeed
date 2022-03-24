@@ -44,16 +44,12 @@ class CustomerReviewsController extends Controller
      */
     public function store(CustomerReviewCreateRequest $request)
     {
-        $review = new CustomerReview();
-        $review->customer_name = $request->customer_name;
-        $review->customer_description = $request->customer_description;
-        
+        $data = $request->validated();
         $imageName = date('YmdHis') . " . " . request()->customer_image->getClientOriginalExtension();
         request()->customer_image->move(public_path('images/customerImage'), $imageName);
-        $review->customer_image = $imageName;
-
-        $review->save();
-        return redirect('/review')->with('uploaded', config('upload.message.created'));
+        $data['customer_image'] = $imageName;
+        CustomerReview::create($data);
+        return redirect()->route('review.index')->with('uploaded', config('upload.message.created'));
     }
 
     /**
@@ -64,7 +60,7 @@ class CustomerReviewsController extends Controller
      */
     public function show($id)
     {
-        //
+        redirect()->route('review.index');
     }
 
     /**
@@ -87,17 +83,14 @@ class CustomerReviewsController extends Controller
      */
     public function update(reviewEditRequest $request, CustomerReview $review)
     {
-        $review->customer_name = $request->customer_name;
-        $review->customer_description = $request->customer_description;
-        
+        $data = $request->validated();    
         if($request->customer_image) {
             $imageName = date('YmdHis') . " . " . request()->customer_image->getClientOriginalExtension();
             request()->customer_image->move(public_path('images/customerImage'), $imageName);
-            $review->customer_image = $imageName;
+            $data['customer_image'] = $imageName;
         }
-
-        $review->save();
-        return redirect('/review')->with('uploaded', config('upload.message.updated'));
+        $review->update($data);
+        return redirect()->route('review.index')->with('uploaded', config('upload.message.updated'));
     }
 
     /**
@@ -109,6 +102,6 @@ class CustomerReviewsController extends Controller
     public function destroy(CustomerReview $review)
     {
         $review->delete();
-        return redirect('/review')->with('deleted', config('upload.message.deleted'));
+        return redirect()->route('review.index')->with('deleted', config('upload.message.deleted'));
     }
 }

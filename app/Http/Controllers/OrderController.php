@@ -12,26 +12,20 @@ class OrderController extends Controller
 {
     public function submit(OrderRequest $request)
     {
-        $vehicle_id = $request->vehicle_id;
-        $vehicle = PopularVehicle::findOrFail($vehicle_id);
+        $vehicle_id_int = intval( $request->vehicle_id );
+        $vehicle = PopularVehicle::findOrFail($vehicle_id_int);
         
-        if ($vehicle_id != $vehicle->id) {
+        if ($vehicle_id_int != $vehicle->id) {
             return redirect()->action([HomeController::class, 'show'],['id'=>$vehicle->id])->with('orderFail','Your Order is Failed !');
         } else {
-            $order = new Order();
-            $order->name = $request->name;
-            $order->email = $request->email;
-            $order->phone = $request->phone;
-            $order->address = $request->address;
-            
+            $data = $request->validated();
+            $data['vehicle_id'] = $vehicle_id_int;
             $imageName = date('YmdHis') . " . " . request()->image->getClientOriginalExtension();
             request()->image->move(public_path('images/orderIdentity'), $imageName);
-            $order->image = $imageName;
-
-            $order->brand = $vehicle->brand;
-            $order->model = $vehicle->model;
-            $order->vehicle_id = $vehicle->id;
-            $order->save();
+            $data['image'] = $imageName;
+            $data['brand'] = $request->brand;
+            $data['model'] = $request->model;
+            Order::create($data);
             return redirect()->action([HomeController::class, 'show'],['id'=>$vehicle->id])->with('orderPass','Your Order is successfully submitted, We will contact you as soon as possible !');
         }
     
@@ -46,7 +40,7 @@ class OrderController extends Controller
     public function order_finish($id)
     {
         $order = Order::findOrFail($id)->delete();
-        return redirect('/order')->with('finished', 'Order is successfully finished');
+        return redirect()->route('admin.order')->with('finished', 'Order is successfully finished');
     }
 
 }

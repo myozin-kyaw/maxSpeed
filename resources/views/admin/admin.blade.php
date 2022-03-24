@@ -36,7 +36,6 @@
                       <tr>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Password</th>
                         <th>IsAdmin</th>
                         <th>Action</th>
                       </tr>
@@ -46,8 +45,7 @@
                       <tr>
                         <td>{{ $admin->name }}</td>
                         <td>{{ $admin->email }}</td>
-                        <td>{{ substr($admin->password,0, 10) }} ... </td>
-                        <td>{{ $admin->is_admin }}</td>
+                        <td>{{ $admin->is_admin == 1 ? 'Admin' : 'User' }}</td>
                         <td>
                             <div class="form-row">
                                 <a style="height:40px; margin-right:10px;" href="{{ route('admin.edit', [$admin->id]) }}" class="btn btn-warning">Edit</a>

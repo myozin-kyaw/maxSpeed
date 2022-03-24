@@ -132,6 +132,8 @@
             @error('image')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
+            <input type="hidden" name="brand" value="{{ $vehicle->brand }}">
+            <input type="hidden" name="model" value="{{ $vehicle->model }}">
 
             <button style="float:right;" type="submit" class="btn mb-3">Submit</button>
             
